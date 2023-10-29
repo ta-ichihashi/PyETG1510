@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ETG.1510 Master Diagnosis Interface client library for Python &mdash; PyETG1510  ドキュメント</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/translations.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="pyetg1510" href="modules.html" />
+    <link rel="prev" title="PyETG1510 EtherCAT メインデバイス診断インターフェース Python クライアント" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PyETG1510
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">APIドキュメント</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ETG.1510 Master Diagnosis Interface client library for Python</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">インストール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">接続準備</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ethercat">EtherCATマスタのあるコンピュータで実行する場合</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">EtherCATマスタを外部から接続したリモートコンピュータで実行する場合 (<strong>非推奨</strong>)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">クイックスタート</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">pyetg1510</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PyETG1510</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">ETG.1510 Master Diagnosis Interface client library for Python</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/README.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="etg-1510-master-diagnosis-interface-client-library-for-python">
+<h1>ETG.1510 Master Diagnosis Interface client library for Python<a class="headerlink" href="#etg-1510-master-diagnosis-interface-client-library-for-python" title="このヘッドラインへのパーマリンク"></a></h1>
+<p>本パッケージは、EtherCATマスタから診断情報を収集するクライアントソフトウェアです。</p>
+<p>Mailbox Gateway(ETG.8200)を経由し、UDP/IPによりEtherCATマスタのSDOエントリに格納された各種診断 情報（ETG.1510）を収集します。</p>
+<p>EtherCATマスタが、全てのETG.1510のオブジェクトディクショナリ（OD）すべてをサポートしているとは限りません。また、ETG.1510 で規定されている<code class="docutils literal notranslate"><span class="pre">VISIBLE_STRING</span></code>はサイズが固定ではなく、EtherCATマスタの仕様に依存します。</p>
+<p>したがって、本ライブラリでは次のとおり二つの機能をサポートします。</p>
+<ol class="arabic simple">
+<li><p>SDO Information Service により、EtherCATマスタのオブジェクトディクショナリ情報を収集します。</p></li>
+<li><p>収集したOD情報に基づき、SDO Uploadコマンドにより診断データを収集します。</p></li>
+</ol>
+<section id="id1">
+<h2>インストール<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク"></a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>pyetg1510
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h2>接続準備<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク"></a></h2>
+<p>本クライアントを実行するコンピュータからEtherCATマスタが存在するコンピュータと別の場合、ネットワーク設定が必要です。例えばBeckhoff TwinCATでは、次図のとおりEtherCATマスタとWindowsで明確な境界があります。</p>
+<p><img alt="" src="_images/connection.png" /></p>
+<p>このため、次のとおりOSのネットワーク設定を行う必要があります。</p>
+<section id="ethercat">
+<h3>EtherCATマスタのあるコンピュータで実行する場合<a class="headerlink" href="#ethercat" title="このヘッドラインへのパーマリンク"></a></h3>
+<p>Mailboxゲートウェイのホストアドレス（IPアドレス）を設定してください。図の例では<code class="docutils literal notranslate"><span class="pre">192.168.2.254</span></code>とします。</p>
+<ul class="simple">
+<li><p>WindowsネットワークとMailboxゲートウェイを接続、および、IP Routingを有効にしてください。</p></li>
+<li><p>Windowsのネットワーク設定で、EtherCATが占有しているネットワークカードに対するIPアドレスを設定します。図の例では<code class="docutils literal notranslate"><span class="pre">192.168.2.10/24</span></code>とします。</p></li>
+<li><p>Windowsのネットワーク設定で、外部のLANと接続するネットワークカードに対するIPアドレスを設定します。図の例では<code class="docutils literal notranslate"><span class="pre">192.168.1.10/24</span></code>とします。</p></li>
+</ul>
+</section>
+<section id="id3">
+<h3>EtherCATマスタを外部から接続したリモートコンピュータで実行する場合 (<strong>非推奨</strong>)<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク"></a></h3>
+<p>前節の項目の設定に加えて以下の対応が必要です。ただし、セキュリティ上問題がありますのでお勧めしません。</p>
+<ul>
+<li><p>ファイアウォール設定でUDP/IP の Port 34980 のInboundを許可します</p></li>
+<li><p>リモートコンピュータのIPアドレスを、EtherCATマスタのコンピュータと接続したネットワークと同じネットワークアドレスでIPアドレスを設定します。図の例では、<code class="docutils literal notranslate"><span class="pre">192.168.1.11/24</span></code>とします。</p></li>
+<li><p>Windowsであれば管理者モードでターミナル軌道し、次のとおりrouteコマンドを入力します。Mainboxゲートウェイの192.168.2.254へ接続するには、192.168.1.10にルーティングしてもらうための設定です。</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">&gt;</span> <span class="n">route</span> <span class="n">add</span> <span class="n">192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">2</span><span class="p">.</span><span class="n">0</span><span class="p">/</span><span class="n">24</span> <span class="n">192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">10</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="id4">
+<h2>クイックスタート<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyetg1510</span> <span class="kn">import</span> <span class="n">EtherCATMasterConnection</span><span class="p">,</span> <span class="n">MasterODSpecification</span><span class="p">,</span> <span class="n">ETG1510Profile</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">fields</span>
+<span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">get_etg1510_data</span><span class="p">(</span><span class="n">etg1510</span><span class="p">:</span> <span class="n">ETG1510Profile</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;インデックスを指定してSDOを取得する例&quot;&quot;&quot;</span>
+
+    <span class="k">await</span> <span class="n">etg1510</span><span class="o">.</span><span class="n">master_od</span><span class="o">.</span><span class="n">get_object_dictionary</span><span class="p">()</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;SDO Information serviceによりメインデバイスODデータを収集&quot;&quot;&quot;</span>
+
+    <span class="n">whole_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">etg1510</span><span class="o">.</span><span class="n">sdo_database</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;マスターのODからインデックスリストを取得する&quot;&quot;&quot;</span>
+    
+    <span class="n">watch_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mh">0xa000</span> <span class="o">&lt;=</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="mh">0xafff</span><span class="p">,</span> <span class="n">whole_list</span><span class="p">))</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;0xa000から0xafffまでのリストにフィルタリング&quot;&quot;&quot;</span>
+
+    <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">watch_list</span><span class="p">:</span>
+        <span class="n">sdo</span> <span class="o">=</span> <span class="k">await</span> <span class="n">etg1510</span><span class="o">.</span><span class="n">get_sdo</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;get_sdoメソッドでインデックスを指定してSdoDataBody型のSDOを取得する&quot;&quot;&quot;</span>
+        <span class="n">pprint</span><span class="p">({</span><span class="nb">hex</span><span class="p">(</span><span class="n">index</span><span class="p">):</span> <span class="p">{</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">sdo</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">(</span><span class="n">sdo</span><span class="p">)}})</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">get_etg1510_whole_data</span><span class="p">(</span><span class="n">etg1510</span><span class="p">:</span> <span class="n">ETG1510Profile</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;イテレータを用いて全てのSDOを順次取得する例&quot;&quot;&quot;</span>
+
+    <span class="k">await</span> <span class="n">etg1510</span><span class="o">.</span><span class="n">master_od</span><span class="o">.</span><span class="n">get_object_dictionary</span><span class="p">()</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;SDO Information serviceによりメインデバイスODデータを収集&quot;&quot;&quot;</span>
+
+    <span class="k">async</span> <span class="k">for</span> <span class="n">entry</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">etg1510</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        非同期イテレータにより順次SDOインデックスとそのデータのタプルを順次取得してpprintで整形して標準出力</span>
+<span class="sd">    </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            entry(int): SDO インデックス</span>
+<span class="sd">            data(dataclass): complete accessで取得した全エントリをdataclassをコンテナとして取得。</span>
+<span class="sd">                             dataclassのメンバはSdoEntry型として取得可能。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pprint</span><span class="p">({</span><span class="nb">hex</span><span class="p">(</span><span class="n">entry</span><span class="p">):</span> <span class="p">{</span>
+                    <span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">connection</span> <span class="o">=</span> <span class="n">EtherCATMasterConnection</span><span class="p">(</span><span class="s1">&#39;192.168.2.254&#39;</span><span class="p">,</span> <span class="mi">34980</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;UDP/IP通信インスタンス作成。Mailbox gatewayのIPアドレス, Portを指定&quot;&quot;&quot;</span>
+    <span class="n">master_od</span> <span class="o">=</span> <span class="n">MasterODSpecification</span><span class="p">(</span><span class="n">connection</span><span class="o">=</span><span class="n">connection</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;SDO Information servieのインスタンス作成&quot;&quot;&quot;</span>
+    <span class="n">etg1510</span> <span class="o">=</span> <span class="n">ETG1510Profile</span><span class="p">(</span><span class="n">master_od</span><span class="o">=</span><span class="n">master_od</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;ETG.1510 の診断データイテレータ作成&quot;&quot;&quot;</span>
+    <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">get_etg1510_data</span><span class="p">(</span><span class="n">etg1510</span><span class="p">))</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;非同期タスクによりETG.1510のSDOデータを収集&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>上記のプログラムを実行すると、以下のとおり標準出力されます。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python<span class="w"> </span>etg1510.py
+<span class="o">{</span><span class="s1">&#39;0x1000&#39;</span>:<span class="w"> </span><span class="o">{</span><span class="s1">&#39;DeviceType&#39;</span>:<span class="w"> </span><span class="m">0</span><span class="o">}}</span>
+<span class="o">{</span><span class="s1">&#39;0x1008&#39;</span>:<span class="w"> </span><span class="o">{</span><span class="s1">&#39;DeviceName&#39;</span>:<span class="w"> </span><span class="s1">&#39;TwinCAT EtherCAT Master&#39;</span><span class="o">}}</span>
+<span class="o">{</span><span class="s1">&#39;0x1009&#39;</span>:<span class="w"> </span><span class="o">{</span><span class="s1">&#39;HardwareVersion&#39;</span>:<span class="w"> </span><span class="s1">&#39;0&#39;</span><span class="o">}}</span>
+<span class="o">{</span><span class="s1">&#39;0x100a&#39;</span>:<span class="w"> </span><span class="o">{</span><span class="s1">&#39;SoftwareVersion&#39;</span>:<span class="w"> </span><span class="s1">&#39;3.1 1737&#39;</span><span class="o">}}</span>
+<span class="o">{</span><span class="s1">&#39;0x1018&#39;</span>:<span class="w"> </span><span class="o">{</span><span class="s1">&#39;NumberOfEntries&#39;</span>:<span class="w"> </span><span class="m">4</span>,
+<span class="w">            </span><span class="s1">&#39;ProductCode&#39;</span>:<span class="w"> </span><span class="m">65539</span>,
+<span class="w">            </span><span class="s1">&#39;RevisionNumber&#39;</span>:<span class="w"> </span><span class="m">1737</span>,
+<span class="w">            </span><span class="s1">&#39;SerialNumber&#39;</span>:<span class="w"> </span><span class="m">0</span>,
+<span class="w">            </span><span class="s1">&#39;VendorID&#39;</span>:<span class="w"> </span><span class="m">2</span><span class="o">}}</span>
+<span class="o">{</span><span class="s1">&#39;0x8000&#39;</span>:<span class="w"> </span><span class="o">{</span><span class="s1">&#39;DeviceType&#39;</span>:<span class="w"> </span><span class="m">0</span>,
+<span class="w">            </span><span class="s1">&#39;DiagHistoryObjectSupported&#39;</span>:<span class="w"> </span>False,
+<span class="w">            </span><span class="s1">&#39;FixedStationAddress&#39;</span>:<span class="w"> </span><span class="m">1001</span>,
+<span class="w">            </span><span class="s1">&#39;Flags&#39;</span>:<span class="w"> </span><span class="m">0</span>,
+<span class="w">            </span><span class="s1">&#39;LinkPreset&#39;</span>:<span class="w"> </span><span class="m">17</span>,
+<span class="w">            </span><span class="s1">&#39;LinkStatus&#39;</span>:<span class="w"> </span><span class="m">0</span>,
+<span class="w">            </span><span class="s1">&#39;MailboxInSize&#39;</span>:<span class="w"> </span><span class="m">0</span>,
+<span class="w">            </span><span class="s1">&#39;MailboxOutSize&#39;</span>:<span class="w"> </span><span class="m">0</span>,
+<span class="w">            </span><span class="s1">&#39;MailboxProtocolsSupported&#39;</span>:<span class="w"> </span><span class="m">0</span>,
+<span class="w">            </span><span class="s1">&#39;Name&#39;</span>:<span class="w"> </span><span class="s1">&#39;Term 1 (EK1100)&#39;</span>,
+<span class="w">            </span><span class="s1">&#39;NumberOfEntries&#39;</span>:<span class="w"> </span><span class="m">37</span>,
+<span class="w">            </span><span class="s1">&#39;PortPhysics&#39;</span>:<span class="w"> </span><span class="m">0</span>,
+<span class="w">            </span><span class="s1">&#39;ProductCode&#39;</span>:<span class="w"> </span><span class="m">72100946</span>,
+<span class="w">            </span><span class="s1">&#39;RevisionNumber&#39;</span>:<span class="w"> </span><span class="m">1114112</span>,
+<span class="w">            </span><span class="s1">&#39;SerialNumber&#39;</span>:<span class="w"> </span><span class="m">0</span>,
+<span class="w">            </span><span class="s1">&#39;Type&#39;</span>:<span class="w"> </span><span class="s1">&#39;EK1100&#39;</span>,
+<span class="w">            </span><span class="s1">&#39;VendorId&#39;</span>:<span class="w"> </span><span class="m">2</span><span class="o">}}</span>
+<span class="o">{</span><span class="s1">&#39;0x8001&#39;</span>:<span class="w"> </span><span class="o">{</span><span class="s1">&#39;DeviceType&#39;</span>:<span class="w"> </span><span class="m">0</span>,
+<span class="w">            </span><span class="s1">&#39;DiagHistoryObjectSupported&#39;</span>:<span class="w"> </span>False,
+<span class="w">            </span><span class="s1">&#39;FixedStationAddress&#39;</span>:<span class="w"> </span><span class="m">1002</span>,
+<span class="w">            </span><span class="s1">&#39;Flags&#39;</span>:<span class="w"> </span><span class="m">0</span>,
+<span class="w">            </span><span class="s1">&#39;LinkPreset&#39;</span>:<span class="w"> </span><span class="m">17</span>,
+<span class="w">            </span><span class="s1">&#39;LinkStatus&#39;</span>:<span class="w"> </span><span class="m">0</span>,
+<span class="w">            </span><span class="s1">&#39;MailboxInSize&#39;</span>:<span class="w"> </span><span class="m">0</span>,
+<span class="w">            </span><span class="s1">&#39;MailboxOutSize&#39;</span>:<span class="w"> </span><span class="m">0</span>,
+<span class="w">            </span><span class="s1">&#39;MailboxProtocolsSupported&#39;</span>:<span class="w"> </span><span class="m">0</span>,
+<span class="w">            </span><span class="s1">&#39;Name&#39;</span>:<span class="w"> </span><span class="s1">&#39;Term 2 (EL1012)&#39;</span>,
+<span class="w">            </span><span class="s1">&#39;NumberOfEntries&#39;</span>:<span class="w"> </span><span class="m">37</span>,
+<span class="w">            </span><span class="s1">&#39;PortPhysics&#39;</span>:<span class="w"> </span><span class="m">0</span>,
+<span class="w">            </span><span class="s1">&#39;ProductCode&#39;</span>:<span class="w"> </span><span class="m">66334802</span>,
+<span class="w">            </span><span class="s1">&#39;RevisionNumber&#39;</span>:<span class="w"> </span><span class="m">1048576</span>,
+<span class="w">            </span><span class="s1">&#39;SerialNumber&#39;</span>:<span class="w"> </span><span class="m">0</span>,
+<span class="w">            </span><span class="s1">&#39;Type&#39;</span>:<span class="w"> </span><span class="s1">&#39;EL1012&#39;</span>,
+<span class="w">            </span><span class="s1">&#39;VendorId&#39;</span>:<span class="w"> </span><span class="m">2</span><span class="o">}}</span>
+<span class="w">              </span>:
+<span class="w">              </span>:
+<span class="o">{</span><span class="s1">&#39;0xa000&#39;</span>:<span class="w"> </span><span class="o">{</span><span class="s1">&#39;ALControl&#39;</span>:<span class="w"> </span><span class="m">8</span>,
+<span class="w">            </span><span class="s1">&#39;ALStatus&#39;</span>:<span class="w"> </span><span class="m">8</span>,
+<span class="w">            </span><span class="s1">&#39;ALStatusCode&#39;</span>:<span class="w"> </span><span class="m">0</span>,
+<span class="w">            </span><span class="s1">&#39;AbnormalStateChangeCounter&#39;</span>:<span class="w"> </span><span class="m">0</span>,
+<span class="w">            </span><span class="s1">&#39;CyclicWCErrorCounter&#39;</span>:<span class="w"> </span><span class="m">0</span>,
+<span class="w">            </span><span class="s1">&#39;DisableAutomaticLinkControl&#39;</span>:<span class="w"> </span>False,
+<span class="w">            </span><span class="s1">&#39;FixedAddressConnPort&#39;</span>:<span class="w"> </span><span class="o">[</span><span class="m">0</span>,<span class="w"> </span><span class="m">1002</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span><span class="o">]</span>,
+<span class="w">            </span><span class="s1">&#39;FrameErrorCounterPort&#39;</span>:<span class="w"> </span><span class="o">[</span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span><span class="o">]</span>,
+<span class="w">            </span><span class="s1">&#39;LastProtocolError&#39;</span>:<span class="w"> </span><span class="m">0</span>,
+<span class="w">            </span><span class="s1">&#39;LinkConnStatus&#39;</span>:<span class="w"> </span><span class="m">50</span>,
+<span class="w">            </span><span class="s1">&#39;LinkControl&#39;</span>:<span class="w"> </span><span class="m">240</span>,
+<span class="w">            </span><span class="s1">&#39;NewDiagMessageAvailable&#39;</span>:<span class="w"> </span>False,
+<span class="w">            </span><span class="s1">&#39;NumberOfEntries&#39;</span>:<span class="w"> </span><span class="m">17</span>,
+<span class="w">            </span><span class="s1">&#39;SlaveNotPresentCounter&#39;</span>:<span class="w"> </span><span class="m">7</span><span class="o">}}</span>
+<span class="o">{</span><span class="s1">&#39;0xa001&#39;</span>:<span class="w"> </span><span class="o">{</span><span class="s1">&#39;ALControl&#39;</span>:<span class="w"> </span><span class="m">8</span>,
+<span class="w">            </span><span class="s1">&#39;ALStatus&#39;</span>:<span class="w"> </span><span class="m">8</span>,
+<span class="w">            </span><span class="s1">&#39;ALStatusCode&#39;</span>:<span class="w"> </span><span class="m">0</span>,
+<span class="w">            </span><span class="s1">&#39;AbnormalStateChangeCounter&#39;</span>:<span class="w"> </span><span class="m">0</span>,
+<span class="w">            </span><span class="s1">&#39;CyclicWCErrorCounter&#39;</span>:<span class="w"> </span><span class="m">1</span>,
+<span class="w">            </span><span class="s1">&#39;DisableAutomaticLinkControl&#39;</span>:<span class="w"> </span>False,
+<span class="w">            </span><span class="s1">&#39;FixedAddressConnPort&#39;</span>:<span class="w"> </span><span class="o">[</span><span class="m">1001</span>,<span class="w"> </span><span class="m">1003</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span><span class="o">]</span>,
+<span class="w">            </span><span class="s1">&#39;FrameErrorCounterPort&#39;</span>:<span class="w"> </span><span class="o">[</span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span><span class="o">]</span>,
+<span class="w">            </span><span class="s1">&#39;LastProtocolError&#39;</span>:<span class="w"> </span><span class="m">0</span>,
+<span class="w">            </span><span class="s1">&#39;LinkConnStatus&#39;</span>:<span class="w"> </span><span class="m">51</span>,
+<span class="w">            </span><span class="s1">&#39;LinkControl&#39;</span>:<span class="w"> </span><span class="m">240</span>,
+<span class="w">            </span><span class="s1">&#39;NewDiagMessageAvailable&#39;</span>:<span class="w"> </span>False,
+<span class="w">            </span><span class="s1">&#39;NumberOfEntries&#39;</span>:<span class="w"> </span><span class="m">17</span>,
+<span class="w">            </span><span class="s1">&#39;SlaveNotPresentCounter&#39;</span>:<span class="w"> </span><span class="m">7</span><span class="o">}}</span>
+<span class="w">              </span>:
+<span class="w">              </span>:
+<span class="o">{</span><span class="s1">&#39;0xf002&#39;</span>:<span class="w"> </span><span class="o">{</span><span class="s1">&#39;NumberofEntries&#39;</span>:<span class="w"> </span><span class="m">67</span>,
+<span class="w">            </span><span class="s1">&#39;ScanCommandRequest&#39;</span>:<span class="w"> </span><span class="s1">&#39;\x04\x06&#39;</span>,
+<span class="w">            </span><span class="s1">&#39;ScanCommandResponse&#39;</span>:<span class="w"> </span><span class="s1">&#39;&#39;</span>,
+<span class="w">            </span><span class="s1">&#39;ScanCommandStatus&#39;</span>:<span class="w"> </span><span class="m">0</span><span class="o">}}</span>
+<span class="o">{</span><span class="s1">&#39;0xf020&#39;</span>:<span class="w"> </span><span class="o">{</span><span class="s1">&#39;ConfiguredAddress&#39;</span>:<span class="w"> </span><span class="m">1001</span>,<span class="w"> </span><span class="s1">&#39;NumberofSlaves&#39;</span>:<span class="w"> </span><span class="m">10</span><span class="o">}}</span>
+<span class="o">{</span><span class="s1">&#39;0xf120&#39;</span>:<span class="w"> </span><span class="o">{</span><span class="s1">&#39;ACyclicFramesPerSecond&#39;</span>:<span class="w"> </span><span class="m">0</span>,
+<span class="w">            </span><span class="s1">&#39;ACyclicLostFrames&#39;</span>:<span class="w"> </span><span class="m">98826091</span>,
+<span class="w">            </span><span class="s1">&#39;CyclicFramesPerSecond&#39;</span>:<span class="w"> </span><span class="m">0</span>,
+<span class="w">            </span><span class="s1">&#39;CyclicLostFrames&#39;</span>:<span class="w"> </span><span class="m">66</span>,
+<span class="w">            </span><span class="s1">&#39;MasterState&#39;</span>:<span class="w"> </span><span class="m">0</span>,
+<span class="w">            </span><span class="s1">&#39;NumberOfEntries&#39;</span>:<span class="w"> </span><span class="m">2</span><span class="o">}}</span>
+<span class="o">{</span><span class="s1">&#39;0xf200&#39;</span>:<span class="w"> </span><span class="o">{</span><span class="s1">&#39;NumberOfEntries&#39;</span>:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span><span class="s1">&#39;ResetDiagInfo&#39;</span>:<span class="w"> </span>False<span class="o">}}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="PyETG1510 EtherCAT メインデバイス診断インターフェース Python クライアント" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="modules.html" class="btn btn-neutral float-right" title="pyetg1510" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Beckhoff Automation K.K..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

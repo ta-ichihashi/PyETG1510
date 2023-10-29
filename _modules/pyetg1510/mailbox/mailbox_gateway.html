@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pyetg1510.mailbox.mailbox_gateway &mdash; PyETG1510  ドキュメント</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="検索" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            PyETG1510
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">APIドキュメント</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">ETG.1510 Master Diagnosis Interface client library for Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">pyetg1510</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PyETG1510</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">モジュールコード</a></li>
+      <li class="breadcrumb-item active">pyetg1510.mailbox.mailbox_gateway</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>pyetg1510.mailbox.mailbox_gateway のソースコード</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Mailbox Gateway 通信フレーム制御モジュール</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">ctypes</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">bitarray</span> <span class="kn">import</span> <span class="n">bitarray</span><span class="p">,</span> <span class="n">util</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">pyetg1510.helper</span> <span class="kn">import</span> <span class="n">SysLog</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">SysLog</span><span class="o">.</span><span class="n">logger</span>
+
+
+<div class="viewcode-block" id="EtherCATProtocolType"><a class="viewcode-back" href="../../../pyetg1510.mailbox.html#pyetg1510.mailbox.mailbox_gateway.EtherCATProtocolType">[ドキュメント]</a><span class="k">class</span> <span class="nc">EtherCATProtocolType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">PDU</span> <span class="o">=</span> <span class="mh">0x01</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Protocol Data Unit&quot;&quot;&quot;</span>
+    <span class="n">NETWORK_VARIABLES</span> <span class="o">=</span> <span class="mh">0x04</span>
+    <span class="n">MAILBOX</span> <span class="o">=</span> <span class="mh">0x05</span></div>
+
+
+<div class="viewcode-block" id="SdoService"><a class="viewcode-back" href="../../../pyetg1510.mailbox.html#pyetg1510.mailbox.mailbox_gateway.SdoService">[ドキュメント]</a><span class="k">class</span> <span class="nc">SdoService</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">REQUEST</span> <span class="o">=</span> <span class="mh">0x02</span>
+    <span class="n">RESPONSE</span> <span class="o">=</span> <span class="mh">0x03</span>
+    <span class="n">INFO</span> <span class="o">=</span> <span class="mh">0x08</span></div>
+
+
+<div class="viewcode-block" id="SdoRequestCommand"><a class="viewcode-back" href="../../../pyetg1510.mailbox.html#pyetg1510.mailbox.mailbox_gateway.SdoRequestCommand">[ドキュメント]</a><span class="k">class</span> <span class="nc">SdoRequestCommand</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">SDOREQ_DOWNLOAD_SEGMENTED</span> <span class="o">=</span> <span class="mh">0x00</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Req/Download Segmented Res/Upload Segmented&quot;&quot;&quot;</span>
+    <span class="n">SDOREQ_DOWNLOAD</span> <span class="o">=</span> <span class="mh">0x01</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Req/Download Res/Download Segmented Info/Get OD List Req.&quot;&quot;&quot;</span>
+    <span class="n">SDOREQ_UPLOAD</span> <span class="o">=</span> <span class="mh">0x02</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Req/Upload Res/Upload Info/Get OD List Resp.&quot;&quot;&quot;</span>
+    <span class="n">SDOREQ_UPLOAD_SEGMENTED</span> <span class="o">=</span> <span class="mh">0x03</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Req/Upload Segmented Res/Download Info/Get Object Description Req.&quot;&quot;&quot;</span>
+    <span class="n">SDOREQ_ABORT_TRANSFER</span> <span class="o">=</span> <span class="mh">0x04</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Req/Abort Transfer Info./Get Object Description Resp.&quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="SdoInfoOpcode"><a class="viewcode-back" href="../../../pyetg1510.mailbox.html#pyetg1510.mailbox.mailbox_gateway.SdoInfoOpcode">[ドキュメント]</a><span class="k">class</span> <span class="nc">SdoInfoOpcode</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">GET_OD_LIST_REQ</span> <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">GET_OD_LIST_RES</span> <span class="o">=</span> <span class="mh">0x02</span>
+    <span class="n">GET_DESCRIPTION_REQ</span> <span class="o">=</span> <span class="mh">0x03</span>
+    <span class="n">GET_DESCRIPTION_RES</span> <span class="o">=</span> <span class="mh">0x04</span>
+    <span class="n">GET_ENTRY_REQ</span> <span class="o">=</span> <span class="mh">0x05</span>
+    <span class="n">GET_ENTRY_RES</span> <span class="o">=</span> <span class="mh">0x06</span>
+    <span class="n">SDO_INFO_ERR_REQ</span> <span class="o">=</span> <span class="mh">0x07</span></div>
+
+
+<div class="viewcode-block" id="SdoResponseCommand"><a class="viewcode-back" href="../../../pyetg1510.mailbox.html#pyetg1510.mailbox.mailbox_gateway.SdoResponseCommand">[ドキュメント]</a><span class="k">class</span> <span class="nc">SdoResponseCommand</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">SDORES_UPLOAD_SEGMENTED</span> <span class="o">=</span> <span class="mh">0x00</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Req/Download Segmented Res/Upload Segmented&quot;&quot;&quot;</span>
+    <span class="n">SDORES_DOWNLOAD_SEGMENTED</span> <span class="o">=</span> <span class="mh">0x01</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Req/Download Res/Download Segmented Info/Get OD List Req.&quot;&quot;&quot;</span>
+    <span class="n">SDORES_UPLOAD</span> <span class="o">=</span> <span class="mh">0x02</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Req/Upload Res/Upload Info/Get OD List Resp.&quot;&quot;&quot;</span>
+    <span class="n">SDORES_DOWNLOAD</span> <span class="o">=</span> <span class="mh">0x03</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Req/Upload Segmented Res/Download Info/Get Object Description Req.&quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="SdoInfoCommand"><a class="viewcode-back" href="../../../pyetg1510.mailbox.html#pyetg1510.mailbox.mailbox_gateway.SdoInfoCommand">[ドキュメント]</a><span class="k">class</span> <span class="nc">SdoInfoCommand</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">SDOINFO_ODLIST_REQ</span> <span class="o">=</span> <span class="mh">0x01</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Req/Download Res/Download Segmented Info/Get OD List Req.&quot;&quot;&quot;</span>
+    <span class="n">SDOINFO_ODLIST_RES</span> <span class="o">=</span> <span class="mh">0x02</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Req/Upload Res/Upload Info/Get OD List Resp.&quot;&quot;&quot;</span>
+    <span class="n">SDOINFO_DESCRIPTION_REQ</span> <span class="o">=</span> <span class="mh">0x03</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Req/Upload Segmented Res/Download Info/Get Object Description Req.&quot;&quot;&quot;</span>
+    <span class="n">SDOINFO_DESCRIPTION_RES</span> <span class="o">=</span> <span class="mh">0x04</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Req/Abort Transfer Info./Get Object Description Resp.&quot;&quot;&quot;</span>
+    <span class="n">SDOINFO_ENTRY_REQ</span> <span class="o">=</span> <span class="mh">0x05</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Info/Get Entry Description.&quot;&quot;&quot;</span>
+    <span class="n">SDOINFO_ENTRY_RES</span> <span class="o">=</span> <span class="mh">0x06</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Info/Get Entry Description Resp.&quot;&quot;&quot;</span>
+    <span class="n">SDOINFO_INFO_ERR_REQ</span> <span class="o">=</span> <span class="mh">0x07</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Info/SDO Info Error Req.&quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="MailBoxFrameOffsetAddress"><a class="viewcode-back" href="../../../pyetg1510.mailbox.html#pyetg1510.mailbox.mailbox_gateway.MailBoxFrameOffsetAddress">[ドキュメント]</a><span class="k">class</span> <span class="nc">MailBoxFrameOffsetAddress</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">ETHERCAT_HEADER</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">MAILBOX_HEADER</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">COE_HEADER</span> <span class="o">=</span> <span class="mi">8</span>
+    <span class="n">SDO_HEADER</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">SDO_DATA</span> <span class="o">=</span> <span class="mi">14</span></div>
+
+
+<div class="viewcode-block" id="EtherCATHeader"><a class="viewcode-back" href="../../../pyetg1510.mailbox.html#pyetg1510.mailbox.mailbox_gateway.EtherCATHeader">[ドキュメント]</a><span class="k">class</span> <span class="nc">EtherCATHeader</span><span class="p">(</span><span class="n">Structure</span><span class="p">):</span>
+    <span class="n">_pack_</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">_fields_</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;Length&quot;</span><span class="p">,</span> <span class="n">c_uint16</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span>  <span class="c1"># &#39;H&#39; -&gt; int</span>
+        <span class="p">(</span><span class="s2">&quot;Reserved&quot;</span><span class="p">,</span> <span class="n">c_uint8</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>  <span class="c1"># &#39;?&#39; -&gt; bool</span>
+        <span class="p">(</span><span class="s2">&quot;DataType&quot;</span><span class="p">,</span> <span class="n">c_uint8</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>  <span class="c1"># &#39;B&#39; -&gt; int</span>
+    <span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="MailboxHeader"><a class="viewcode-back" href="../../../pyetg1510.mailbox.html#pyetg1510.mailbox.mailbox_gateway.MailboxHeader">[ドキュメント]</a><span class="k">class</span> <span class="nc">MailboxHeader</span><span class="p">(</span><span class="n">Structure</span><span class="p">):</span>
+    <span class="n">_pack_</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">_fields_</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;Length&quot;</span><span class="p">,</span> <span class="n">c_uint16</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span>  <span class="c1"># &#39;H&#39; -&gt; int</span>
+        <span class="p">(</span><span class="s2">&quot;Address&quot;</span><span class="p">,</span> <span class="n">c_uint16</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span>  <span class="c1"># &#39;H&#39; -&gt; int</span>
+        <span class="p">(</span><span class="s2">&quot;Channel&quot;</span><span class="p">,</span> <span class="n">c_uint8</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>  <span class="c1"># &#39;B&#39; -&gt; int</span>
+        <span class="p">(</span><span class="s2">&quot;Prio&quot;</span><span class="p">,</span> <span class="n">c_uint8</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>  <span class="c1"># &#39;B&#39; -&gt; int</span>
+        <span class="p">(</span><span class="s2">&quot;Type&quot;</span><span class="p">,</span> <span class="n">c_uint8</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>  <span class="c1"># &#39;B&#39; -&gt; int</span>
+        <span class="p">(</span><span class="s2">&quot;Cnt&quot;</span><span class="p">,</span> <span class="n">c_uint8</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>  <span class="c1"># &#39;B&#39; -&gt; int</span>
+        <span class="p">(</span><span class="s2">&quot;Reserved&quot;</span><span class="p">,</span> <span class="n">c_uint8</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>  <span class="c1"># &#39;?&#39; -&gt; bool</span>
+    <span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="CoEHeader"><a class="viewcode-back" href="../../../pyetg1510.mailbox.html#pyetg1510.mailbox.mailbox_gateway.CoEHeader">[ドキュメント]</a><span class="k">class</span> <span class="nc">CoEHeader</span><span class="p">(</span><span class="n">Structure</span><span class="p">):</span>
+    <span class="n">_pack_</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">_fields_</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;Number&quot;</span><span class="p">,</span> <span class="n">c_uint16</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span>  <span class="c1"># &#39;H&#39; -&gt; int</span>
+        <span class="p">(</span><span class="s2">&quot;Reserved&quot;</span><span class="p">,</span> <span class="n">c_uint8</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>  <span class="c1"># &#39;B&#39; -&gt; int</span>
+        <span class="p">(</span><span class="s2">&quot;Service&quot;</span><span class="p">,</span> <span class="n">c_uint8</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>  <span class="c1"># &#39;B&#39; -&gt; int</span>
+    <span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="SDORequest"><a class="viewcode-back" href="../../../pyetg1510.mailbox.html#pyetg1510.mailbox.mailbox_gateway.SDORequest">[ドキュメント]</a><span class="k">class</span> <span class="nc">SDORequest</span><span class="p">(</span><span class="n">Structure</span><span class="p">):</span>
+    <span class="n">_pack_</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">_fields_</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;Reserved&quot;</span><span class="p">,</span> <span class="n">c_uint8</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>  <span class="c1"># &#39;H&#39; -&gt; int</span>
+        <span class="p">(</span><span class="s2">&quot;CompleteAccess&quot;</span><span class="p">,</span> <span class="n">c_uint8</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>  <span class="c1"># &#39;?&#39; -&gt; bool</span>
+        <span class="p">(</span><span class="s2">&quot;CommandSpecifier&quot;</span><span class="p">,</span> <span class="n">c_uint8</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>  <span class="c1"># &#39;B&#39; -&gt; int</span>
+        <span class="p">(</span><span class="s2">&quot;Index&quot;</span><span class="p">,</span> <span class="n">c_uint16</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span>  <span class="c1"># &#39;H&#39; -&gt; int</span>
+        <span class="p">(</span><span class="s2">&quot;SubIndex&quot;</span><span class="p">,</span> <span class="n">c_uint8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>  <span class="c1"># &#39;B&#39; -&gt; int</span>
+        <span class="p">(</span><span class="s2">&quot;Reserved2&quot;</span><span class="p">,</span> <span class="n">c_uint32</span><span class="p">,</span> <span class="mi">32</span><span class="p">),</span>  <span class="c1"># &#39;H&#39; -&gt; int</span>
+    <span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="SDOResponse"><a class="viewcode-back" href="../../../pyetg1510.mailbox.html#pyetg1510.mailbox.mailbox_gateway.SDOResponse">[ドキュメント]</a><span class="k">class</span> <span class="nc">SDOResponse</span><span class="p">(</span><span class="n">Structure</span><span class="p">):</span>
+    <span class="n">_pack_</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">_fields_</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;SizeIndicator&quot;</span><span class="p">,</span> <span class="n">c_uint8</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>  <span class="c1"># True : enable following size specification</span>
+        <span class="p">(</span><span class="s2">&quot;TransferType&quot;</span><span class="p">,</span> <span class="n">c_uint8</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>  <span class="c1"># True: Expedited / False: Normal</span>
+        <span class="p">(</span><span class="s2">&quot;DataSetSize&quot;</span><span class="p">,</span> <span class="n">c_uint8</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>  <span class="c1"># 0: 4byte, 1 : 3byte, 2: 2byte, 3: 1byte</span>
+        <span class="p">(</span><span class="s2">&quot;CompleteAccess&quot;</span><span class="p">,</span> <span class="n">c_uint8</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>  <span class="c1"># multi subindex</span>
+        <span class="p">(</span><span class="s2">&quot;CommandSpecifier&quot;</span><span class="p">,</span> <span class="n">c_uint8</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>  <span class="c1"># defined as &#39;SdoResponseCommand&#39; enum type</span>
+        <span class="p">(</span><span class="s2">&quot;Index&quot;</span><span class="p">,</span> <span class="n">c_uint16</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span>  <span class="c1"># &#39;H&#39; -&gt; int</span>
+        <span class="p">(</span><span class="s2">&quot;SubIndex&quot;</span><span class="p">,</span> <span class="n">c_uint8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>  <span class="c1"># &#39;B&#39; -&gt; int</span>
+    <span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="SDOInformationHeader"><a class="viewcode-back" href="../../../pyetg1510.mailbox.html#pyetg1510.mailbox.mailbox_gateway.SDOInformationHeader">[ドキュメント]</a><span class="k">class</span> <span class="nc">SDOInformationHeader</span><span class="p">(</span><span class="n">Structure</span><span class="p">):</span>
+    <span class="n">_pack_</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">_fields_</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;Opcode&quot;</span><span class="p">,</span> <span class="n">c_uint8</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span>  <span class="c1">#</span>
+        <span class="p">(</span><span class="s2">&quot;Incomplete&quot;</span><span class="p">,</span> <span class="n">c_uint8</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>  <span class="c1">#</span>
+        <span class="p">(</span><span class="s2">&quot;Reserved&quot;</span><span class="p">,</span> <span class="n">c_uint8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>  <span class="c1">#</span>
+        <span class="p">(</span><span class="s2">&quot;FragmentsLeft&quot;</span><span class="p">,</span> <span class="n">c_uint16</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span>  <span class="c1">#</span>
+    <span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="SDOInformationODListRequest"><a class="viewcode-back" href="../../../pyetg1510.mailbox.html#pyetg1510.mailbox.mailbox_gateway.SDOInformationODListRequest">[ドキュメント]</a><span class="k">class</span> <span class="nc">SDOInformationODListRequest</span><span class="p">(</span><span class="n">Structure</span><span class="p">):</span>
+    <span class="n">_fields_</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;ListType&quot;</span><span class="p">,</span> <span class="n">c_uint16</span><span class="p">,</span> <span class="mi">16</span><span class="p">)]</span></div>
+
+
+<div class="viewcode-block" id="SDOInformationDescriptionRequest"><a class="viewcode-back" href="../../../pyetg1510.mailbox.html#pyetg1510.mailbox.mailbox_gateway.SDOInformationDescriptionRequest">[ドキュメント]</a><span class="k">class</span> <span class="nc">SDOInformationDescriptionRequest</span><span class="p">(</span><span class="n">Structure</span><span class="p">):</span>
+    <span class="n">_fields_</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;Index&quot;</span><span class="p">,</span> <span class="n">c_uint16</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span>
+    <span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="SDOInformationEntryRequest"><a class="viewcode-back" href="../../../pyetg1510.mailbox.html#pyetg1510.mailbox.mailbox_gateway.SDOInformationEntryRequest">[ドキュメント]</a><span class="k">class</span> <span class="nc">SDOInformationEntryRequest</span><span class="p">(</span><span class="n">Structure</span><span class="p">):</span>
+    <span class="n">_fields_</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;Index&quot;</span><span class="p">,</span> <span class="n">c_uint16</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;Subindex&quot;</span><span class="p">,</span> <span class="n">c_uint8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;ValueInfo&quot;</span><span class="p">,</span> <span class="n">c_uint8</span><span class="p">,</span> <span class="mi">8</span><span class="p">)]</span></div>
+
+
+<div class="viewcode-block" id="SDOMessage"><a class="viewcode-back" href="../../../pyetg1510.mailbox.html#pyetg1510.mailbox.mailbox_gateway.SDOMessage">[ドキュメント]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">SDOMessage</span><span class="p">:</span>
+    <span class="n">sdo_service</span><span class="p">:</span> <span class="n">SdoService</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">SdoService</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">station_address</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mh">0x0000</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Default: Master</span>
+    <span class="n">mailbox_type</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mh">0x03</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Default: CoE</span>
+    <span class="n">session_counter</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">sub_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">complete_access</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">bool</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">sdo_command</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">SdoRequestCommand</span><span class="p">,</span> <span class="n">SdoResponseCommand</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="n">SdoRequestCommand</span><span class="o">.</span><span class="n">SDOREQ_UPLOAD</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
+    <span class="n">ethercat_header</span><span class="p">:</span> <span class="n">EtherCATHeader</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">EtherCATHeader</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">mailbox_header</span><span class="p">:</span> <span class="n">MailboxHeader</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">MailboxHeader</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">coe_header</span><span class="p">:</span> <span class="n">CoEHeader</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">CoEHeader</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">dataclass</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sdo_service</span> <span class="o">==</span> <span class="n">SdoService</span><span class="o">.</span><span class="n">REQUEST</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sdo_header</span> <span class="o">=</span> <span class="n">SDORequest</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">sdo_service</span> <span class="o">==</span> <span class="n">SdoService</span><span class="o">.</span><span class="n">RESPONSE</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sdo_header</span> <span class="o">=</span> <span class="n">SDOResponse</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">sdo_service</span> <span class="o">==</span> <span class="n">SdoService</span><span class="o">.</span><span class="n">INFO</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sdo_header</span> <span class="o">=</span> <span class="n">SDOInformationHeader</span><span class="p">()</span>
+
+<div class="viewcode-block" id="SDOMessage.get_bytes"><a class="viewcode-back" href="../../../pyetg1510.mailbox.html#pyetg1510.mailbox.mailbox_gateway.SDOMessage.get_bytes">[ドキュメント]</a>    <span class="k">def</span> <span class="nf">get_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">:</span> <span class="n">Structure</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">bitarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get bitarray object&quot;&quot;&quot;</span>
+
+        <span class="c1"># Works for either Python2 or Python3</span>
+
+        <span class="n">_bitarray</span> <span class="o">=</span> <span class="n">bitarray</span><span class="p">(</span><span class="n">endian</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">byteorder</span><span class="p">)</span>
+        <span class="n">_bitarray</span><span class="p">[:]</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">source</span><span class="o">.</span><span class="n">_fields_</span><span class="p">:</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">bitarray</span><span class="p">(</span><span class="n">endian</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">byteorder</span><span class="p">)</span>
+            <span class="n">a</span><span class="p">[:]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">a</span><span class="o">.</span><span class="n">frombytes</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mi">1</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">/</span> <span class="mi">8</span><span class="p">),</span> <span class="n">byteorder</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">byteorder</span><span class="p">))</span>
+
+            <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">endian</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;big&quot;</span><span class="p">:</span>
+                <span class="n">a</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span> <span class="o">-</span> <span class="n">item</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="p">:]</span>
+                <span class="n">_bitarray</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">_bitarray</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">a</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
+                <span class="n">_bitarray</span> <span class="o">=</span> <span class="n">_bitarray</span> <span class="o">+</span> <span class="n">a</span>
+
+        <span class="k">if</span> <span class="n">_bitarray</span><span class="o">.</span><span class="n">endian</span><span class="p">()</span> <span class="o">!=</span> <span class="s2">&quot;big&quot;</span><span class="p">:</span>
+            <span class="n">_bitarray</span><span class="o">.</span><span class="n">bytereverse</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">_bitarray</span></div>
+
+<div class="viewcode-block" id="SDOMessage.make_coe_header"><a class="viewcode-back" href="../../../pyetg1510.mailbox.html#pyetg1510.mailbox.mailbox_gateway.SDOMessage.make_coe_header">[ドキュメント]</a>    <span class="k">def</span> <span class="nf">make_coe_header</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sdo_data_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">increase_session</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">bitarray</span><span class="p">:</span>
+        <span class="c1"># CoE Header message parameter set</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">coe_header</span><span class="o">.</span><span class="n">Number</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">coe_header</span><span class="o">.</span><span class="n">Reserved</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">coe_header</span><span class="o">.</span><span class="n">Service</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sdo_service</span><span class="o">.</span><span class="n">value</span>
+        <span class="n">coe_header_bytes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_bytes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">coe_header</span><span class="p">)</span>
+        <span class="n">body_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">sdo_data_size</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">coe_header_bytes</span><span class="p">))</span> <span class="o">/</span> <span class="mi">8</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mailbox_header</span><span class="o">.</span><span class="n">Length</span> <span class="o">=</span> <span class="n">body_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mailbox_header</span><span class="o">.</span><span class="n">Address</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">station_address</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mailbox_header</span><span class="o">.</span><span class="n">Channel</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mailbox_header</span><span class="o">.</span><span class="n">Prio</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mailbox_header</span><span class="o">.</span><span class="n">Type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mailbox_type</span>
+
+        <span class="c1"># Mailbox Header message parameter set</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">session_counter</span> <span class="o">&gt;</span> <span class="mi">7</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">session_counter</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;session_counter must be within 1-7. Set to </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">session_counter</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">increase_session</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">session_counter</span> <span class="o">&gt;=</span> <span class="mi">7</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">session_counter</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">session_counter</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">session_counter</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">mailbox_header</span><span class="o">.</span><span class="n">Cnt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session_counter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mailbox_header</span><span class="o">.</span><span class="n">Reserved</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">mailbox_header_bytes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_bytes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mailbox_header</span><span class="p">)</span>
+
+        <span class="c1"># EtherCAT Header message parameter set</span>
+        <span class="n">total_length</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mailbox_header_bytes</span><span class="p">)</span> <span class="o">/</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="n">body_size</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">ethercat_header</span><span class="o">.</span><span class="n">Length</span> <span class="o">=</span> <span class="n">total_length</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ethercat_header</span><span class="o">.</span><span class="n">Reserved</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ethercat_header</span><span class="o">.</span><span class="n">DataType</span> <span class="o">=</span> <span class="n">EtherCATProtocolType</span><span class="o">.</span><span class="n">MAILBOX</span><span class="o">.</span><span class="n">value</span>
+        <span class="n">ecat_header_bytes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_bytes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ethercat_header</span><span class="p">)</span>
+
+        <span class="c1"># join whole frames</span>
+        <span class="n">_bitarray</span> <span class="o">=</span> <span class="n">bitarray</span><span class="p">()</span>
+        <span class="n">_bitarray</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">ecat_header_bytes</span><span class="p">)</span>
+        <span class="n">_bitarray</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">mailbox_header_bytes</span><span class="p">)</span>
+        <span class="n">_bitarray</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">coe_header_bytes</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">_bitarray</span></div></div>
+
+
+<div class="viewcode-block" id="SDOResponseMessage"><a class="viewcode-back" href="../../../pyetg1510.mailbox.html#pyetg1510.mailbox.mailbox_gateway.SDOResponseMessage">[ドキュメント]</a><span class="k">class</span> <span class="nc">SDOResponseMessage</span><span class="p">(</span><span class="n">SDOMessage</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;deserialize received byte message until coe header.</span>
+<span class="sd">    If you find deserialize logic for sdo message body, you should see map method at the PySdoDataMode.SdoController</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__post_init__</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sdo_service</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">SdoService</span><span class="o">.</span><span class="n">RESPONSE</span><span class="p">,</span> <span class="n">SdoService</span><span class="o">.</span><span class="n">INFO</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Property sdo_service should be only in [Sdoservice.RESPONSE, SdoService.INFO]&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="SDOResponseMessage.parse_response_frame"><a class="viewcode-back" href="../../../pyetg1510.mailbox.html#pyetg1510.mailbox.mailbox_gateway.SDOResponseMessage.parse_response_frame">[ドキュメント]</a>    <span class="k">def</span> <span class="nf">parse_response_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">debug_log</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="n">Structure</span><span class="p">):</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">s</span><span class="o">.</span><span class="n">_fields_</span><span class="p">}</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">s</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="n">_bitarray_response</span> <span class="o">=</span> <span class="n">bitarray</span><span class="p">()</span>
+        <span class="n">_bitarray_response</span><span class="o">.</span><span class="n">frombytes</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+
+        <span class="c1"># Parse EtherCAT header</span>
+        <span class="n">ethercat_header</span> <span class="o">=</span> <span class="n">_bitarray_response</span><span class="p">[</span>
+            <span class="n">MailBoxFrameOffsetAddress</span><span class="o">.</span><span class="n">ETHERCAT_HEADER</span><span class="o">.</span><span class="n">value</span> <span class="o">*</span> <span class="mi">8</span> <span class="p">:</span> <span class="n">MailBoxFrameOffsetAddress</span><span class="o">.</span><span class="n">MAILBOX_HEADER</span><span class="o">.</span><span class="n">value</span> <span class="o">*</span> <span class="mi">8</span>
+        <span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_map_structure</span><span class="p">(</span><span class="n">ethercat_header</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ethercat_header</span><span class="p">)</span>
+
+        <span class="n">debug_log</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ethercat_header</span><span class="p">)</span>
+
+        <span class="c1"># Parse Mailbox header</span>
+        <span class="n">mailbox_header</span> <span class="o">=</span> <span class="n">_bitarray_response</span><span class="p">[</span>
+            <span class="n">MailBoxFrameOffsetAddress</span><span class="o">.</span><span class="n">MAILBOX_HEADER</span><span class="o">.</span><span class="n">value</span> <span class="o">*</span> <span class="mi">8</span> <span class="p">:</span> <span class="n">MailBoxFrameOffsetAddress</span><span class="o">.</span><span class="n">COE_HEADER</span><span class="o">.</span><span class="n">value</span> <span class="o">*</span> <span class="mi">8</span>
+        <span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_map_structure</span><span class="p">(</span><span class="n">mailbox_header</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mailbox_header</span><span class="p">)</span>
+
+        <span class="n">debug_log</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mailbox_header</span><span class="p">)</span>
+
+        <span class="c1"># Parse CoE header</span>
+        <span class="n">coe_header</span> <span class="o">=</span> <span class="n">_bitarray_response</span><span class="p">[</span>
+            <span class="n">MailBoxFrameOffsetAddress</span><span class="o">.</span><span class="n">COE_HEADER</span><span class="o">.</span><span class="n">value</span> <span class="o">*</span> <span class="mi">8</span> <span class="p">:</span> <span class="n">MailBoxFrameOffsetAddress</span><span class="o">.</span><span class="n">SDO_HEADER</span><span class="o">.</span><span class="n">value</span> <span class="o">*</span> <span class="mi">8</span>
+        <span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_map_structure</span><span class="p">(</span><span class="n">coe_header</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">coe_header</span><span class="p">)</span>
+
+        <span class="n">debug_log</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">coe_header</span><span class="p">)</span>
+
+        <span class="c1"># Parse sdo response data</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sdo_service</span> <span class="o">==</span> <span class="n">SdoService</span><span class="o">.</span><span class="n">INFO</span><span class="p">:</span>
+            <span class="n">sdo_header</span> <span class="o">=</span> <span class="n">_bitarray_response</span><span class="p">[</span>
+                <span class="n">MailBoxFrameOffsetAddress</span><span class="o">.</span><span class="n">SDO_HEADER</span><span class="o">.</span><span class="n">value</span> <span class="o">*</span> <span class="mi">8</span> <span class="p">:</span> <span class="n">MailBoxFrameOffsetAddress</span><span class="o">.</span><span class="n">SDO_DATA</span><span class="o">.</span><span class="n">value</span> <span class="o">*</span> <span class="mi">8</span>
+            <span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_map_structure</span><span class="p">(</span><span class="n">sdo_header</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sdo_header</span><span class="p">)</span>
+
+            <span class="n">data_body_bitarray</span> <span class="o">=</span> <span class="n">_bitarray_response</span><span class="p">[</span><span class="n">MailBoxFrameOffsetAddress</span><span class="o">.</span><span class="n">SDO_DATA</span><span class="o">.</span><span class="n">value</span> <span class="o">*</span> <span class="mi">8</span> <span class="p">:]</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">data_body</span> <span class="o">=</span> <span class="n">data_body_bitarray</span><span class="o">.</span><span class="n">tobytes</span><span class="p">()</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">sdo_header</span> <span class="o">=</span> <span class="n">_bitarray_response</span><span class="p">[</span>
+                <span class="n">MailBoxFrameOffsetAddress</span><span class="o">.</span><span class="n">SDO_HEADER</span><span class="o">.</span><span class="n">value</span> <span class="o">*</span> <span class="mi">8</span> <span class="p">:</span> <span class="n">MailBoxFrameOffsetAddress</span><span class="o">.</span><span class="n">SDO_DATA</span><span class="o">.</span><span class="n">value</span> <span class="o">*</span> <span class="mi">8</span>
+            <span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_map_structure</span><span class="p">(</span><span class="n">sdo_header</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sdo_header</span><span class="p">)</span>
+
+            <span class="n">data_body_bitarray</span> <span class="o">=</span> <span class="n">_bitarray_response</span><span class="p">[</span><span class="n">MailBoxFrameOffsetAddress</span><span class="o">.</span><span class="n">SDO_DATA</span><span class="o">.</span><span class="n">value</span> <span class="o">*</span> <span class="mi">8</span> <span class="p">:]</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">data_body</span> <span class="o">=</span> <span class="n">data_body_bitarray</span><span class="o">.</span><span class="n">tobytes</span><span class="p">()</span>
+
+        <span class="n">debug_log</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sdo_header</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_map_structure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">:</span> <span class="n">bitarray</span><span class="p">,</span> <span class="n">struct_obj</span><span class="p">:</span> <span class="n">Structure</span><span class="p">):</span>
+        <span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">byteorder</span> <span class="o">!=</span> <span class="nb">input</span><span class="o">.</span><span class="n">endian</span><span class="p">():</span>
+            <span class="nb">input</span><span class="o">.</span><span class="n">bytereverse</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">struct_obj</span><span class="o">.</span><span class="n">_fields_</span><span class="p">:</span>
+            <span class="n">next_offset</span> <span class="o">=</span> <span class="n">offset</span> <span class="o">+</span> <span class="n">item</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">sliced</span> <span class="o">=</span> <span class="nb">input</span><span class="p">[</span><span class="n">offset</span><span class="p">:</span><span class="n">next_offset</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">byteorder</span> <span class="o">!=</span> <span class="nb">input</span><span class="o">.</span><span class="n">endian</span><span class="p">():</span>
+                <span class="n">sliced</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sliced</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="n">struct_obj</span><span class="p">,</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">util</span><span class="o">.</span><span class="n">ba2int</span><span class="p">(</span><span class="n">sliced</span><span class="p">))</span>
+            <span class="n">offset</span> <span class="o">+=</span> <span class="n">item</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="SDOCommandMessage"><a class="viewcode-back" href="../../../pyetg1510.mailbox.html#pyetg1510.mailbox.mailbox_gateway.SDOCommandMessage">[ドキュメント]</a><span class="k">class</span> <span class="nc">SDOCommandMessage</span><span class="p">(</span><span class="n">SDOMessage</span><span class="p">):</span>
+    <span class="n">sdo_command_data</span><span class="p">:</span> <span class="n">Structure</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">SDOInformationODListRequest</span><span class="p">(),</span> <span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__post_init__</span><span class="p">()</span>
+
+<div class="viewcode-block" id="SDOCommandMessage.make_request_frame"><a class="viewcode-back" href="../../../pyetg1510.mailbox.html#pyetg1510.mailbox.mailbox_gateway.SDOCommandMessage.make_request_frame">[ドキュメント]</a>    <span class="k">def</span> <span class="nf">make_request_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">increase_session</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+        <span class="c1"># SDO Request message parameter set</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sdo_header</span><span class="p">,</span> <span class="n">SDORequest</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sdo_header</span><span class="o">.</span><span class="n">Reserved</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sdo_header</span><span class="o">.</span><span class="n">CompleteAccess</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">complete_access</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sdo_header</span><span class="o">.</span><span class="n">CommandSpecifier</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sdo_command</span><span class="o">.</span><span class="n">value</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sdo_header</span><span class="o">.</span><span class="n">Index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sdo_header</span><span class="o">.</span><span class="n">SubIndex</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sub_index</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sdo_header</span><span class="o">.</span><span class="n">Reserved2</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;sdo_header should be SDORequest type.&quot;</span><span class="p">)</span>
+
+        <span class="n">sdo_bitarray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_bytes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sdo_header</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sdo_command_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">sdo_bitarray</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_bytes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sdo_command_data</span><span class="p">))</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Request Body: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">sdo_command_data</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">, Index:</span><span class="si">{</span><span class="nb">hex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="si">}</span><span class="s2">, Subindex:</span><span class="si">{</span><span class="nb">hex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sub_index</span><span class="p">)</span><span class="si">}</span><span class="s2"> specified.&quot;</span>
+        <span class="p">)</span>
+
+        <span class="n">_bitarray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_coe_header</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sdo_bitarray</span><span class="p">))</span>
+        <span class="n">_bitarray</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">sdo_bitarray</span><span class="p">)</span>
+
+        <span class="c1"># convert bitarray with bytes data and return</span>
+        <span class="k">return</span> <span class="n">_bitarray</span><span class="o">.</span><span class="n">tobytes</span><span class="p">()</span></div></div>
+
+
+<div class="viewcode-block" id="SDORequestInfoMessage"><a class="viewcode-back" href="../../../pyetg1510.mailbox.html#pyetg1510.mailbox.mailbox_gateway.SDORequestInfoMessage">[ドキュメント]</a><span class="k">class</span> <span class="nc">SDORequestInfoMessage</span><span class="p">(</span><span class="n">SDOMessage</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Build SDO &quot;Info Service Data&quot; frame in SDO information Service Request command&quot;&quot;&quot;</span>
+    <span class="n">opcode</span><span class="p">:</span> <span class="n">SdoInfoOpcode</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">SdoInfoOpcode</span><span class="o">.</span><span class="n">GET_OD_LIST_REQ</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">sdo_command_data</span><span class="p">:</span> <span class="n">Structure</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__post_init__</span><span class="p">()</span>
+
+<div class="viewcode-block" id="SDORequestInfoMessage.make_request_frame"><a class="viewcode-back" href="../../../pyetg1510.mailbox.html#pyetg1510.mailbox.mailbox_gateway.SDORequestInfoMessage.make_request_frame">[ドキュメント]</a>    <span class="k">def</span> <span class="nf">make_request_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">increase_session</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+        <span class="c1"># SDO Request message parameter set</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sdo_header</span><span class="p">,</span> <span class="n">SDOInformationHeader</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sdo_header</span><span class="o">.</span><span class="n">Opcode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">opcode</span><span class="o">.</span><span class="n">value</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sdo_header</span><span class="o">.</span><span class="n">Incomplete</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sdo_header</span><span class="o">.</span><span class="n">FragmentsLeft</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sdo_header</span><span class="o">.</span><span class="n">ListType</span> <span class="o">=</span> <span class="mh">0x01</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sdo_command_data</span><span class="p">,</span> <span class="n">SDOInformationODListRequest</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">sdo_command_data</span><span class="o">.</span><span class="n">ListType</span> <span class="o">=</span> <span class="mh">0x01</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sdo_command_data</span><span class="p">,</span> <span class="n">SDOInformationDescriptionRequest</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">sdo_command_data</span><span class="o">.</span><span class="n">Index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sdo_command_data</span><span class="p">,</span> <span class="n">SDOInformationEntryRequest</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">sdo_command_data</span><span class="o">.</span><span class="n">Index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">sdo_command_data</span><span class="o">.</span><span class="n">Subindex</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sub_index</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">sdo_command_data</span><span class="o">.</span><span class="n">ValueInfo</span> <span class="o">=</span> <span class="mh">0x7F</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;sdo_header should be SDOInformationHeader type.&quot;</span><span class="p">)</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Request Body: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">sdo_command_data</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">, Index:</span><span class="si">{</span><span class="nb">hex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="si">}</span><span class="s2">, Subindex:</span><span class="si">{</span><span class="nb">hex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sub_index</span><span class="p">)</span><span class="si">}</span><span class="s2"> specified.&quot;</span>
+        <span class="p">)</span>
+
+        <span class="n">sdo_bitarray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_bytes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sdo_header</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sdo_command_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">sdo_bitarray</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_bytes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sdo_command_data</span><span class="p">))</span>
+
+        <span class="n">_bitarray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_coe_header</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sdo_bitarray</span><span class="p">))</span>
+        <span class="n">_bitarray</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">sdo_bitarray</span><span class="p">)</span>
+
+        <span class="c1"># convert bitarray with bytes data and return</span>
+        <span class="k">return</span> <span class="n">_bitarray</span><span class="o">.</span><span class="n">tobytes</span><span class="p">()</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Beckhoff Automation K.K..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

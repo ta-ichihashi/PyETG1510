@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pyetg1510.mailbox package &mdash; PyETG1510  ドキュメント</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/translations.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="prev" title="pyetg1510.helper package" href="pyetg1510.helper.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PyETG1510
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">APIドキュメント</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="README.html">ETG.1510 Master Diagnosis Interface client library for Python</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pyetg1510</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="pyetg1510.html">pyetg1510 package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="pyetg1510.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pyetg1510.helper.html">pyetg1510.helper package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">pyetg1510.mailbox package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyetg1510.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyetg1510.html#module-pyetg1510.etg_1510">pyetg1510.etg_1510 module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyetg1510.html#module-pyetg1510.sdo_1xxx_master_object">pyetg1510.sdo_1xxx_master_object module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyetg1510.html#module-pyetg1510.sdo_8xxx_configuration_data">pyetg1510.sdo_8xxx_configuration_data module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyetg1510.html#module-pyetg1510.sdo_9xxx_information_data">pyetg1510.sdo_9xxx_information_data module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyetg1510.html#module-pyetg1510.sdo_axxx_master_diagnosis">pyetg1510.sdo_axxx_master_diagnosis module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyetg1510.html#module-pyetg1510.sdo_fxxx_controls">pyetg1510.sdo_fxxx_controls module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyetg1510.html#module-pyetg1510.topology">pyetg1510.topology module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyetg1510.html#module-pyetg1510">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PyETG1510</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">pyetg1510</a></li>
+          <li class="breadcrumb-item"><a href="pyetg1510.html">pyetg1510 package</a></li>
+      <li class="breadcrumb-item active">pyetg1510.mailbox package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/pyetg1510.mailbox.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pyetg1510-mailbox-package">
+<h1>pyetg1510.mailbox package<a class="headerlink" href="#pyetg1510-mailbox-package" title="このヘッドラインへのパーマリンク"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="このヘッドラインへのパーマリンク"></a></h2>
+</section>
+<section id="module-pyetg1510.mailbox.connection">
+<span id="pyetg1510-mailbox-connection-module"></span><h2>pyetg1510.mailbox.connection module<a class="headerlink" href="#module-pyetg1510.mailbox.connection" title="このヘッドラインへのパーマリンク"></a></h2>
+<p>UDP/IP非同期通信モジュール</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.connection.EtherCATMasterConnection">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyetg1510.mailbox.connection.</span></span><span class="sig-name descname"><span class="pre">EtherCATMasterConnection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">host:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">9001</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/connection.html#EtherCATMasterConnection"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.connection.EtherCATMasterConnection" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス:<code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.connection.EtherCATMasterConnection.host">
+<span class="sig-name descname"><span class="pre">host</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pyetg1510.mailbox.connection.EtherCATMasterConnection.host" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.connection.EtherCATMasterConnection.port">
+<span class="sig-name descname"><span class="pre">port</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">9001</span></em><a class="headerlink" href="#pyetg1510.mailbox.connection.EtherCATMasterConnection.port" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.connection.EtherCATMasterConnection.received_data">
+<span class="sig-name descname"><span class="pre">received_data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">any</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyetg1510.mailbox.connection.EtherCATMasterConnection.received_data" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.connection.EtherCATMasterConnection.send_data">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">send_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/connection.html#EtherCATMasterConnection.send_data"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.connection.EtherCATMasterConnection.send_data" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.connection.Messages">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyetg1510.mailbox.connection.</span></span><span class="sig-name descname"><span class="pre">Messages</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">send:</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">any&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/connection.html#Messages"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.connection.Messages" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス:<code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.connection.Messages.receive">
+<span class="sig-name descname"><span class="pre">receive</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">any</span></em><a class="headerlink" href="#pyetg1510.mailbox.connection.Messages.receive" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.connection.Messages.send">
+<span class="sig-name descname"><span class="pre">send</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">any</span></em><a class="headerlink" href="#pyetg1510.mailbox.connection.Messages.send" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.connection.UDPClientConnection">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyetg1510.mailbox.connection.</span></span><span class="sig-name descname"><span class="pre">UDPClientConnection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pyetg1510.mailbox.connection.Messages" title="pyetg1510.mailbox.connection.Messages"><span class="pre">pyetg1510.mailbox.connection.Messages</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_con_lost</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/connection.html#UDPClientConnection"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.connection.UDPClientConnection" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス:<code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.connection.UDPClientConnection.connection_lost">
+<span class="sig-name descname"><span class="pre">connection_lost</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/connection.html#UDPClientConnection.connection_lost"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.connection.UDPClientConnection.connection_lost" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.connection.UDPClientConnection.connection_made">
+<span class="sig-name descname"><span class="pre">connection_made</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transport</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/connection.html#UDPClientConnection.connection_made"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.connection.UDPClientConnection.connection_made" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.connection.UDPClientConnection.datagram_received">
+<span class="sig-name descname"><span class="pre">datagram_received</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">addr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/connection.html#UDPClientConnection.datagram_received"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.connection.UDPClientConnection.datagram_received" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.connection.UDPClientConnection.error_received">
+<span class="sig-name descname"><span class="pre">error_received</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/connection.html#UDPClientConnection.error_received"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.connection.UDPClientConnection.error_received" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pyetg1510.mailbox.mailbox_gateway">
+<span id="pyetg1510-mailbox-mailbox-gateway-module"></span><h2>pyetg1510.mailbox.mailbox_gateway module<a class="headerlink" href="#module-pyetg1510.mailbox.mailbox_gateway" title="このヘッドラインへのパーマリンク"></a></h2>
+<p>Mailbox Gateway 通信フレーム制御モジュール</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.CoEHeader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyetg1510.mailbox.mailbox_gateway.</span></span><span class="sig-name descname"><span class="pre">CoEHeader</span></span><a class="reference internal" href="_modules/pyetg1510/mailbox/mailbox_gateway.html#CoEHeader"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.CoEHeader" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス:<code class="xref py py-class docutils literal notranslate"><span class="pre">_ctypes.Structure</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.CoEHeader.Number">
+<span class="sig-name descname"><span class="pre">Number</span></span><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.CoEHeader.Number" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.CoEHeader.Reserved">
+<span class="sig-name descname"><span class="pre">Reserved</span></span><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.CoEHeader.Reserved" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.CoEHeader.Service">
+<span class="sig-name descname"><span class="pre">Service</span></span><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.CoEHeader.Service" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.EtherCATHeader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyetg1510.mailbox.mailbox_gateway.</span></span><span class="sig-name descname"><span class="pre">EtherCATHeader</span></span><a class="reference internal" href="_modules/pyetg1510/mailbox/mailbox_gateway.html#EtherCATHeader"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.EtherCATHeader" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス:<code class="xref py py-class docutils literal notranslate"><span class="pre">_ctypes.Structure</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.EtherCATHeader.DataType">
+<span class="sig-name descname"><span class="pre">DataType</span></span><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.EtherCATHeader.DataType" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.EtherCATHeader.Length">
+<span class="sig-name descname"><span class="pre">Length</span></span><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.EtherCATHeader.Length" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.EtherCATHeader.Reserved">
+<span class="sig-name descname"><span class="pre">Reserved</span></span><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.EtherCATHeader.Reserved" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.EtherCATProtocolType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyetg1510.mailbox.mailbox_gateway.</span></span><span class="sig-name descname"><span class="pre">EtherCATProtocolType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/mailbox_gateway.html#EtherCATProtocolType"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.EtherCATProtocolType" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス:<code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.EtherCATProtocolType.MAILBOX">
+<span class="sig-name descname"><span class="pre">MAILBOX</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.EtherCATProtocolType.MAILBOX" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.EtherCATProtocolType.NETWORK_VARIABLES">
+<span class="sig-name descname"><span class="pre">NETWORK_VARIABLES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.EtherCATProtocolType.NETWORK_VARIABLES" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.EtherCATProtocolType.PDU">
+<span class="sig-name descname"><span class="pre">PDU</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.EtherCATProtocolType.PDU" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Protocol Data Unit</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.MailBoxFrameOffsetAddress">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyetg1510.mailbox.mailbox_gateway.</span></span><span class="sig-name descname"><span class="pre">MailBoxFrameOffsetAddress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/mailbox_gateway.html#MailBoxFrameOffsetAddress"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.MailBoxFrameOffsetAddress" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス:<code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.MailBoxFrameOffsetAddress.COE_HEADER">
+<span class="sig-name descname"><span class="pre">COE_HEADER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.MailBoxFrameOffsetAddress.COE_HEADER" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.MailBoxFrameOffsetAddress.ETHERCAT_HEADER">
+<span class="sig-name descname"><span class="pre">ETHERCAT_HEADER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.MailBoxFrameOffsetAddress.ETHERCAT_HEADER" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.MailBoxFrameOffsetAddress.MAILBOX_HEADER">
+<span class="sig-name descname"><span class="pre">MAILBOX_HEADER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.MailBoxFrameOffsetAddress.MAILBOX_HEADER" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.MailBoxFrameOffsetAddress.SDO_DATA">
+<span class="sig-name descname"><span class="pre">SDO_DATA</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">14</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.MailBoxFrameOffsetAddress.SDO_DATA" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.MailBoxFrameOffsetAddress.SDO_HEADER">
+<span class="sig-name descname"><span class="pre">SDO_HEADER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">10</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.MailBoxFrameOffsetAddress.SDO_HEADER" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.MailboxHeader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyetg1510.mailbox.mailbox_gateway.</span></span><span class="sig-name descname"><span class="pre">MailboxHeader</span></span><a class="reference internal" href="_modules/pyetg1510/mailbox/mailbox_gateway.html#MailboxHeader"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.MailboxHeader" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス:<code class="xref py py-class docutils literal notranslate"><span class="pre">_ctypes.Structure</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.MailboxHeader.Address">
+<span class="sig-name descname"><span class="pre">Address</span></span><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.MailboxHeader.Address" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.MailboxHeader.Channel">
+<span class="sig-name descname"><span class="pre">Channel</span></span><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.MailboxHeader.Channel" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.MailboxHeader.Cnt">
+<span class="sig-name descname"><span class="pre">Cnt</span></span><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.MailboxHeader.Cnt" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.MailboxHeader.Length">
+<span class="sig-name descname"><span class="pre">Length</span></span><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.MailboxHeader.Length" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.MailboxHeader.Prio">
+<span class="sig-name descname"><span class="pre">Prio</span></span><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.MailboxHeader.Prio" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.MailboxHeader.Reserved">
+<span class="sig-name descname"><span class="pre">Reserved</span></span><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.MailboxHeader.Reserved" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.MailboxHeader.Type">
+<span class="sig-name descname"><span class="pre">Type</span></span><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.MailboxHeader.Type" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOCommandMessage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyetg1510.mailbox.mailbox_gateway.</span></span><span class="sig-name descname"><span class="pre">SDOCommandMessage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/mailbox_gateway.html#SDOCommandMessage"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOCommandMessage" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス:<a class="reference internal" href="#pyetg1510.mailbox.mailbox_gateway.SDOMessage" title="pyetg1510.mailbox.mailbox_gateway.SDOMessage"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyetg1510.mailbox.mailbox_gateway.SDOMessage</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOCommandMessage.make_request_frame">
+<span class="sig-name descname"><span class="pre">make_request_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">increase_session</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bytes</span></span></span><a class="reference internal" href="_modules/pyetg1510/mailbox/mailbox_gateway.html#SDOCommandMessage.make_request_frame"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOCommandMessage.make_request_frame" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOCommandMessage.sdo_command_data">
+<span class="sig-name descname"><span class="pre">sdo_command_data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">_ctypes.Structure</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Field(name=None,type=None,default=&lt;pyetg1510.mailbox.mailbox_gateway.SDOInformationODListRequest</span> <span class="pre">object&gt;,default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=False,repr=True,hash=None,compare=True,metadata=mappingproxy({}),kw_only=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,_field_type=None)</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOCommandMessage.sdo_command_data" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOInformationDescriptionRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyetg1510.mailbox.mailbox_gateway.</span></span><span class="sig-name descname"><span class="pre">SDOInformationDescriptionRequest</span></span><a class="reference internal" href="_modules/pyetg1510/mailbox/mailbox_gateway.html#SDOInformationDescriptionRequest"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOInformationDescriptionRequest" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス:<code class="xref py py-class docutils literal notranslate"><span class="pre">_ctypes.Structure</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOInformationDescriptionRequest.Index">
+<span class="sig-name descname"><span class="pre">Index</span></span><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOInformationDescriptionRequest.Index" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOInformationEntryRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyetg1510.mailbox.mailbox_gateway.</span></span><span class="sig-name descname"><span class="pre">SDOInformationEntryRequest</span></span><a class="reference internal" href="_modules/pyetg1510/mailbox/mailbox_gateway.html#SDOInformationEntryRequest"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOInformationEntryRequest" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス:<code class="xref py py-class docutils literal notranslate"><span class="pre">_ctypes.Structure</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOInformationEntryRequest.Index">
+<span class="sig-name descname"><span class="pre">Index</span></span><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOInformationEntryRequest.Index" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOInformationEntryRequest.Subindex">
+<span class="sig-name descname"><span class="pre">Subindex</span></span><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOInformationEntryRequest.Subindex" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOInformationEntryRequest.ValueInfo">
+<span class="sig-name descname"><span class="pre">ValueInfo</span></span><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOInformationEntryRequest.ValueInfo" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOInformationHeader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyetg1510.mailbox.mailbox_gateway.</span></span><span class="sig-name descname"><span class="pre">SDOInformationHeader</span></span><a class="reference internal" href="_modules/pyetg1510/mailbox/mailbox_gateway.html#SDOInformationHeader"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOInformationHeader" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス:<code class="xref py py-class docutils literal notranslate"><span class="pre">_ctypes.Structure</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOInformationHeader.FragmentsLeft">
+<span class="sig-name descname"><span class="pre">FragmentsLeft</span></span><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOInformationHeader.FragmentsLeft" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOInformationHeader.Incomplete">
+<span class="sig-name descname"><span class="pre">Incomplete</span></span><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOInformationHeader.Incomplete" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOInformationHeader.Opcode">
+<span class="sig-name descname"><span class="pre">Opcode</span></span><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOInformationHeader.Opcode" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOInformationHeader.Reserved">
+<span class="sig-name descname"><span class="pre">Reserved</span></span><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOInformationHeader.Reserved" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOInformationODListRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyetg1510.mailbox.mailbox_gateway.</span></span><span class="sig-name descname"><span class="pre">SDOInformationODListRequest</span></span><a class="reference internal" href="_modules/pyetg1510/mailbox/mailbox_gateway.html#SDOInformationODListRequest"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOInformationODListRequest" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス:<code class="xref py py-class docutils literal notranslate"><span class="pre">_ctypes.Structure</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOInformationODListRequest.ListType">
+<span class="sig-name descname"><span class="pre">ListType</span></span><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOInformationODListRequest.ListType" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOMessage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyetg1510.mailbox.mailbox_gateway.</span></span><span class="sig-name descname"><span class="pre">SDOMessage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/mailbox_gateway.html#SDOMessage"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOMessage" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス:<code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOMessage.coe_header">
+<span class="sig-name descname"><span class="pre">coe_header</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pyetg1510.mailbox.mailbox_gateway.CoEHeader" title="pyetg1510.mailbox.mailbox_gateway.CoEHeader"><span class="pre">pyetg1510.mailbox.mailbox_gateway.CoEHeader</span></a></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOMessage.coe_header" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOMessage.complete_access">
+<span class="sig-name descname"><span class="pre">complete_access</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOMessage.complete_access" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOMessage.ethercat_header">
+<span class="sig-name descname"><span class="pre">ethercat_header</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pyetg1510.mailbox.mailbox_gateway.EtherCATHeader" title="pyetg1510.mailbox.mailbox_gateway.EtherCATHeader"><span class="pre">pyetg1510.mailbox.mailbox_gateway.EtherCATHeader</span></a></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOMessage.ethercat_header" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOMessage.get_bytes">
+<span class="sig-name descname"><span class="pre">get_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_ctypes.Structure</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bitarray.bitarray</span></span></span><a class="reference internal" href="_modules/pyetg1510/mailbox/mailbox_gateway.html#SDOMessage.get_bytes"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOMessage.get_bytes" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Get bitarray object</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOMessage.index">
+<span class="sig-name descname"><span class="pre">index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOMessage.index" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOMessage.mailbox_header">
+<span class="sig-name descname"><span class="pre">mailbox_header</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pyetg1510.mailbox.mailbox_gateway.MailboxHeader" title="pyetg1510.mailbox.mailbox_gateway.MailboxHeader"><span class="pre">pyetg1510.mailbox.mailbox_gateway.MailboxHeader</span></a></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOMessage.mailbox_header" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOMessage.mailbox_type">
+<span class="sig-name descname"><span class="pre">mailbox_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOMessage.mailbox_type" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOMessage.make_coe_header">
+<span class="sig-name descname"><span class="pre">make_coe_header</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sdo_data_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">increase_session</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bitarray.bitarray</span></span></span><a class="reference internal" href="_modules/pyetg1510/mailbox/mailbox_gateway.html#SDOMessage.make_coe_header"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOMessage.make_coe_header" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOMessage.sdo_command">
+<span class="sig-name descname"><span class="pre">sdo_command</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pyetg1510.mailbox.mailbox_gateway.SdoRequestCommand" title="pyetg1510.mailbox.mailbox_gateway.SdoRequestCommand"><span class="pre">pyetg1510.mailbox.mailbox_gateway.SdoRequestCommand</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#pyetg1510.mailbox.mailbox_gateway.SdoResponseCommand" title="pyetg1510.mailbox.mailbox_gateway.SdoResponseCommand"><span class="pre">pyetg1510.mailbox.mailbox_gateway.SdoResponseCommand</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOMessage.sdo_command" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOMessage.sdo_service">
+<span class="sig-name descname"><span class="pre">sdo_service</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pyetg1510.mailbox.mailbox_gateway.SdoService" title="pyetg1510.mailbox.mailbox_gateway.SdoService"><span class="pre">pyetg1510.mailbox.mailbox_gateway.SdoService</span></a></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOMessage.sdo_service" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOMessage.session_counter">
+<span class="sig-name descname"><span class="pre">session_counter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOMessage.session_counter" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOMessage.station_address">
+<span class="sig-name descname"><span class="pre">station_address</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOMessage.station_address" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOMessage.sub_index">
+<span class="sig-name descname"><span class="pre">sub_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOMessage.sub_index" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDORequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyetg1510.mailbox.mailbox_gateway.</span></span><span class="sig-name descname"><span class="pre">SDORequest</span></span><a class="reference internal" href="_modules/pyetg1510/mailbox/mailbox_gateway.html#SDORequest"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDORequest" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス:<code class="xref py py-class docutils literal notranslate"><span class="pre">_ctypes.Structure</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDORequest.CommandSpecifier">
+<span class="sig-name descname"><span class="pre">CommandSpecifier</span></span><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDORequest.CommandSpecifier" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDORequest.CompleteAccess">
+<span class="sig-name descname"><span class="pre">CompleteAccess</span></span><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDORequest.CompleteAccess" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDORequest.Index">
+<span class="sig-name descname"><span class="pre">Index</span></span><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDORequest.Index" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDORequest.Reserved">
+<span class="sig-name descname"><span class="pre">Reserved</span></span><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDORequest.Reserved" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDORequest.Reserved2">
+<span class="sig-name descname"><span class="pre">Reserved2</span></span><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDORequest.Reserved2" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDORequest.SubIndex">
+<span class="sig-name descname"><span class="pre">SubIndex</span></span><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDORequest.SubIndex" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDORequestInfoMessage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyetg1510.mailbox.mailbox_gateway.</span></span><span class="sig-name descname"><span class="pre">SDORequestInfoMessage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/mailbox_gateway.html#SDORequestInfoMessage"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDORequestInfoMessage" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス:<a class="reference internal" href="#pyetg1510.mailbox.mailbox_gateway.SDOMessage" title="pyetg1510.mailbox.mailbox_gateway.SDOMessage"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyetg1510.mailbox.mailbox_gateway.SDOMessage</span></code></a></p>
+<p>Build SDO &quot;Info Service Data&quot; frame in SDO information Service Request command</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDORequestInfoMessage.make_request_frame">
+<span class="sig-name descname"><span class="pre">make_request_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">increase_session</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bytes</span></span></span><a class="reference internal" href="_modules/pyetg1510/mailbox/mailbox_gateway.html#SDORequestInfoMessage.make_request_frame"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDORequestInfoMessage.make_request_frame" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDORequestInfoMessage.opcode">
+<span class="sig-name descname"><span class="pre">opcode</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pyetg1510.mailbox.mailbox_gateway.SdoInfoOpcode" title="pyetg1510.mailbox.mailbox_gateway.SdoInfoOpcode"><span class="pre">pyetg1510.mailbox.mailbox_gateway.SdoInfoOpcode</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Field(name=None,type=None,default=&lt;SdoInfoOpcode.GET_OD_LIST_REQ:</span> <span class="pre">1&gt;,default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),kw_only=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,_field_type=None)</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDORequestInfoMessage.opcode" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDORequestInfoMessage.sdo_command_data">
+<span class="sig-name descname"><span class="pre">sdo_command_data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">_ctypes.Structure</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Field(name=None,type=None,default=None,default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=False,repr=True,hash=None,compare=True,metadata=mappingproxy({}),kw_only=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,_field_type=None)</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDORequestInfoMessage.sdo_command_data" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyetg1510.mailbox.mailbox_gateway.</span></span><span class="sig-name descname"><span class="pre">SDOResponse</span></span><a class="reference internal" href="_modules/pyetg1510/mailbox/mailbox_gateway.html#SDOResponse"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOResponse" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス:<code class="xref py py-class docutils literal notranslate"><span class="pre">_ctypes.Structure</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOResponse.CommandSpecifier">
+<span class="sig-name descname"><span class="pre">CommandSpecifier</span></span><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOResponse.CommandSpecifier" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOResponse.CompleteAccess">
+<span class="sig-name descname"><span class="pre">CompleteAccess</span></span><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOResponse.CompleteAccess" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOResponse.DataSetSize">
+<span class="sig-name descname"><span class="pre">DataSetSize</span></span><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOResponse.DataSetSize" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOResponse.Index">
+<span class="sig-name descname"><span class="pre">Index</span></span><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOResponse.Index" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOResponse.SizeIndicator">
+<span class="sig-name descname"><span class="pre">SizeIndicator</span></span><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOResponse.SizeIndicator" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOResponse.SubIndex">
+<span class="sig-name descname"><span class="pre">SubIndex</span></span><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOResponse.SubIndex" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOResponse.TransferType">
+<span class="sig-name descname"><span class="pre">TransferType</span></span><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOResponse.TransferType" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOResponseMessage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyetg1510.mailbox.mailbox_gateway.</span></span><span class="sig-name descname"><span class="pre">SDOResponseMessage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/mailbox_gateway.html#SDOResponseMessage"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOResponseMessage" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス:<a class="reference internal" href="#pyetg1510.mailbox.mailbox_gateway.SDOMessage" title="pyetg1510.mailbox.mailbox_gateway.SDOMessage"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyetg1510.mailbox.mailbox_gateway.SDOMessage</span></code></a></p>
+<p>deserialize received byte message until coe header.If you find deserialize logic for sdo message body, you should see map method at the PySdoDataMode.SdoController</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SDOResponseMessage.parse_response_frame">
+<span class="sig-name descname"><span class="pre">parse_response_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">response</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/mailbox_gateway.html#SDOResponseMessage.parse_response_frame"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SDOResponseMessage.parse_response_frame" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SdoInfoCommand">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyetg1510.mailbox.mailbox_gateway.</span></span><span class="sig-name descname"><span class="pre">SdoInfoCommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/mailbox_gateway.html#SdoInfoCommand"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SdoInfoCommand" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス:<code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SdoInfoCommand.SDOINFO_DESCRIPTION_REQ">
+<span class="sig-name descname"><span class="pre">SDOINFO_DESCRIPTION_REQ</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SdoInfoCommand.SDOINFO_DESCRIPTION_REQ" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Req/Upload Segmented Res/Download Info/Get Object Description Req.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SdoInfoCommand.SDOINFO_DESCRIPTION_RES">
+<span class="sig-name descname"><span class="pre">SDOINFO_DESCRIPTION_RES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SdoInfoCommand.SDOINFO_DESCRIPTION_RES" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Req/Abort Transfer Info./Get Object Description Resp.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SdoInfoCommand.SDOINFO_ENTRY_REQ">
+<span class="sig-name descname"><span class="pre">SDOINFO_ENTRY_REQ</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SdoInfoCommand.SDOINFO_ENTRY_REQ" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Info/Get Entry Description.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SdoInfoCommand.SDOINFO_ENTRY_RES">
+<span class="sig-name descname"><span class="pre">SDOINFO_ENTRY_RES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SdoInfoCommand.SDOINFO_ENTRY_RES" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Info/Get Entry Description Resp.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SdoInfoCommand.SDOINFO_INFO_ERR_REQ">
+<span class="sig-name descname"><span class="pre">SDOINFO_INFO_ERR_REQ</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">7</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SdoInfoCommand.SDOINFO_INFO_ERR_REQ" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Info/SDO Info Error Req.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SdoInfoCommand.SDOINFO_ODLIST_REQ">
+<span class="sig-name descname"><span class="pre">SDOINFO_ODLIST_REQ</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SdoInfoCommand.SDOINFO_ODLIST_REQ" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Req/Download Res/Download Segmented Info/Get OD List Req.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SdoInfoCommand.SDOINFO_ODLIST_RES">
+<span class="sig-name descname"><span class="pre">SDOINFO_ODLIST_RES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SdoInfoCommand.SDOINFO_ODLIST_RES" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Req/Upload Res/Upload Info/Get OD List Resp.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SdoInfoOpcode">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyetg1510.mailbox.mailbox_gateway.</span></span><span class="sig-name descname"><span class="pre">SdoInfoOpcode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/mailbox_gateway.html#SdoInfoOpcode"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SdoInfoOpcode" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス:<code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SdoInfoOpcode.GET_DESCRIPTION_REQ">
+<span class="sig-name descname"><span class="pre">GET_DESCRIPTION_REQ</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SdoInfoOpcode.GET_DESCRIPTION_REQ" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SdoInfoOpcode.GET_DESCRIPTION_RES">
+<span class="sig-name descname"><span class="pre">GET_DESCRIPTION_RES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SdoInfoOpcode.GET_DESCRIPTION_RES" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SdoInfoOpcode.GET_ENTRY_REQ">
+<span class="sig-name descname"><span class="pre">GET_ENTRY_REQ</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SdoInfoOpcode.GET_ENTRY_REQ" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SdoInfoOpcode.GET_ENTRY_RES">
+<span class="sig-name descname"><span class="pre">GET_ENTRY_RES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SdoInfoOpcode.GET_ENTRY_RES" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SdoInfoOpcode.GET_OD_LIST_REQ">
+<span class="sig-name descname"><span class="pre">GET_OD_LIST_REQ</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SdoInfoOpcode.GET_OD_LIST_REQ" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SdoInfoOpcode.GET_OD_LIST_RES">
+<span class="sig-name descname"><span class="pre">GET_OD_LIST_RES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SdoInfoOpcode.GET_OD_LIST_RES" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SdoInfoOpcode.SDO_INFO_ERR_REQ">
+<span class="sig-name descname"><span class="pre">SDO_INFO_ERR_REQ</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">7</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SdoInfoOpcode.SDO_INFO_ERR_REQ" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SdoRequestCommand">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyetg1510.mailbox.mailbox_gateway.</span></span><span class="sig-name descname"><span class="pre">SdoRequestCommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/mailbox_gateway.html#SdoRequestCommand"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SdoRequestCommand" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス:<code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SdoRequestCommand.SDOREQ_ABORT_TRANSFER">
+<span class="sig-name descname"><span class="pre">SDOREQ_ABORT_TRANSFER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SdoRequestCommand.SDOREQ_ABORT_TRANSFER" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Req/Abort Transfer Info./Get Object Description Resp.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SdoRequestCommand.SDOREQ_DOWNLOAD">
+<span class="sig-name descname"><span class="pre">SDOREQ_DOWNLOAD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SdoRequestCommand.SDOREQ_DOWNLOAD" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Req/Download Res/Download Segmented Info/Get OD List Req.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SdoRequestCommand.SDOREQ_DOWNLOAD_SEGMENTED">
+<span class="sig-name descname"><span class="pre">SDOREQ_DOWNLOAD_SEGMENTED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SdoRequestCommand.SDOREQ_DOWNLOAD_SEGMENTED" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Req/Download Segmented Res/Upload Segmented</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SdoRequestCommand.SDOREQ_UPLOAD">
+<span class="sig-name descname"><span class="pre">SDOREQ_UPLOAD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SdoRequestCommand.SDOREQ_UPLOAD" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Req/Upload Res/Upload Info/Get OD List Resp.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SdoRequestCommand.SDOREQ_UPLOAD_SEGMENTED">
+<span class="sig-name descname"><span class="pre">SDOREQ_UPLOAD_SEGMENTED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SdoRequestCommand.SDOREQ_UPLOAD_SEGMENTED" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Req/Upload Segmented Res/Download Info/Get Object Description Req.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SdoResponseCommand">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyetg1510.mailbox.mailbox_gateway.</span></span><span class="sig-name descname"><span class="pre">SdoResponseCommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/mailbox_gateway.html#SdoResponseCommand"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SdoResponseCommand" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス:<code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SdoResponseCommand.SDORES_DOWNLOAD">
+<span class="sig-name descname"><span class="pre">SDORES_DOWNLOAD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SdoResponseCommand.SDORES_DOWNLOAD" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Req/Upload Segmented Res/Download Info/Get Object Description Req.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SdoResponseCommand.SDORES_DOWNLOAD_SEGMENTED">
+<span class="sig-name descname"><span class="pre">SDORES_DOWNLOAD_SEGMENTED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SdoResponseCommand.SDORES_DOWNLOAD_SEGMENTED" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Req/Download Res/Download Segmented Info/Get OD List Req.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SdoResponseCommand.SDORES_UPLOAD">
+<span class="sig-name descname"><span class="pre">SDORES_UPLOAD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SdoResponseCommand.SDORES_UPLOAD" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Req/Upload Res/Upload Info/Get OD List Resp.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SdoResponseCommand.SDORES_UPLOAD_SEGMENTED">
+<span class="sig-name descname"><span class="pre">SDORES_UPLOAD_SEGMENTED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SdoResponseCommand.SDORES_UPLOAD_SEGMENTED" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Req/Download Segmented Res/Upload Segmented</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SdoService">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyetg1510.mailbox.mailbox_gateway.</span></span><span class="sig-name descname"><span class="pre">SdoService</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/mailbox_gateway.html#SdoService"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SdoService" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス:<code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SdoService.INFO">
+<span class="sig-name descname"><span class="pre">INFO</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SdoService.INFO" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SdoService.REQUEST">
+<span class="sig-name descname"><span class="pre">REQUEST</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SdoService.REQUEST" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.mailbox_gateway.SdoService.RESPONSE">
+<span class="sig-name descname"><span class="pre">RESPONSE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#pyetg1510.mailbox.mailbox_gateway.SdoService.RESPONSE" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pyetg1510.mailbox.sdo_application_interface">
+<span id="pyetg1510-mailbox-sdo-application-interface-module"></span><h2>pyetg1510.mailbox.sdo_application_interface module<a class="headerlink" href="#module-pyetg1510.mailbox.sdo_application_interface" title="このヘッドラインへのパーマリンク"></a></h2>
+<p>SDOデータ生成モジュール</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.AbstructSdoDataBody">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyetg1510.mailbox.sdo_application_interface.</span></span><span class="sig-name descname"><span class="pre">AbstructSdoDataBody</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/sdo_application_interface.html#AbstructSdoDataBody"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.AbstructSdoDataBody" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス:<code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>SDODataBody インターフェース</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.AbstructSdoDataBody.total_size">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">total_size</span></span><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.AbstructSdoDataBody.total_size" title="この定義へのパーマリンク"></a></dt>
+<dd><p>total size property get</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.AbstructSdoDataBody.unpack_format">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unpack_format</span></span><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.AbstructSdoDataBody.unpack_format" title="この定義へのパーマリンク"></a></dt>
+<dd><p>unpack format abstract method</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.ConcreteSDODataFactory">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyetg1510.mailbox.sdo_application_interface.</span></span><span class="sig-name descname"><span class="pre">ConcreteSDODataFactory</span></span><a class="reference internal" href="_modules/pyetg1510/mailbox/sdo_application_interface.html#ConcreteSDODataFactory"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.ConcreteSDODataFactory" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス:<a class="reference internal" href="#pyetg1510.mailbox.sdo_application_interface.SDODataFactory" title="pyetg1510.mailbox.sdo_application_interface.SDODataFactory"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyetg1510.mailbox.sdo_application_interface.SDODataFactory</span></code></a></p>
+<p>SDO Data Factory 具象クラス</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.ConcreteSDODataFactory.createProduct">
+<span class="sig-name descname"><span class="pre">createProduct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">template</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">abc.ABCMeta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/sdo_application_interface.html#ConcreteSDODataFactory.createProduct"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.ConcreteSDODataFactory.createProduct" title="この定義へのパーマリンク"></a></dt>
+<dd><p>テンプレートクラスからインスタンスを作成</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ</dt>
+<dd class="field-odd"><p><strong>template</strong>(<em>class</em>)--テンプレートクラス</p>
+</dd>
+<dt class="field-even">戻り値</dt>
+<dd class="field-even"><p>生成したインスタンス</p>
+</dd>
+<dt class="field-odd">戻り値の型</dt>
+<dd class="field-odd"><p>SDODataBody</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.ConcreteSDODataFactory.entries">
+<span class="sig-name descname"><span class="pre">entries</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#pyetg1510.mailbox.sdo_application_interface.AbstructSdoDataBody" title="pyetg1510.mailbox.sdo_application_interface.AbstructSdoDataBody"><span class="pre">pyetg1510.mailbox.sdo_application_interface.AbstructSdoDataBody</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.ConcreteSDODataFactory.entries" title="この定義へのパーマリンク"></a></dt>
+<dd><p>オブジェクトディクショナリ</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>(</strong><strong>int</strong><strong>)</strong>--SDOインデックス</p></li>
+<li><p><strong>(</strong><strong>SdoDataBody</strong><strong>)</strong>--SDOデータオブジェクト</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.ConcreteSDODataFactory.registerProduct">
+<span class="sig-name descname"><span class="pre">registerProduct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pyetg1510.mailbox.sdo_application_interface.AbstructSdoDataBody" title="pyetg1510.mailbox.sdo_application_interface.AbstructSdoDataBody"><span class="pre">pyetg1510.mailbox.sdo_application_interface.AbstructSdoDataBody</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/sdo_application_interface.html#ConcreteSDODataFactory.registerProduct"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.ConcreteSDODataFactory.registerProduct" title="この定義へのパーマリンク"></a></dt>
+<dd><p>インデックス毎のSDODataBodyオブジェクトが格納された辞書に登録</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.MappingMember">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyetg1510.mailbox.sdo_application_interface.</span></span><span class="sig-name descname"><span class="pre">MappingMember</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index_range</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pyetg1510.mailbox.sdo_application_interface.SdoMetadata" title="pyetg1510.mailbox.sdo_application_interface.SdoMetadata"><span class="pre">pyetg1510.mailbox.sdo_application_interface.SdoMetadata</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/sdo_application_interface.html#MappingMember"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.MappingMember" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス:<code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>ODマッピング定義オブジェクト</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.MappingMember.index_range">
+<span class="sig-name descname"><span class="pre">index_range</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.MappingMember.index_range" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ODのインデックス範囲</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.MappingMember.metadata">
+<span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pyetg1510.mailbox.sdo_application_interface.SdoMetadata" title="pyetg1510.mailbox.sdo_application_interface.SdoMetadata"><span class="pre">pyetg1510.mailbox.sdo_application_interface.SdoMetadata</span></a></em><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.MappingMember.metadata" title="この定義へのパーマリンク"></a></dt>
+<dd><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SDOメタデータ</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.ODList">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyetg1510.mailbox.sdo_application_interface.</span></span><span class="sig-name descname"><span class="pre">ODList</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/sdo_application_interface.html#ODList"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.ODList" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス:<a class="reference internal" href="#pyetg1510.mailbox.sdo_application_interface.SdoDataBody" title="pyetg1510.mailbox.sdo_application_interface.SdoDataBody"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyetg1510.mailbox.sdo_application_interface.SdoDataBody</span></code></a></p>
+<p>ODリストのメンバー</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.ODList.ListType">
+<span class="sig-name descname"><span class="pre">ListType</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pyetg1510.mailbox.sdo_application_interface.SdoEntry" title="pyetg1510.mailbox.sdo_application_interface.SdoEntry"><span class="pre">pyetg1510.mailbox.sdo_application_interface.SdoEntry</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Field(name=None,type=None,default=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,default_factory=&lt;function</span> <span class="pre">ODList.&lt;lambda&gt;&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),kw_only=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,_field_type=None)</span></em><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.ODList.ListType" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.ODList.ObjectIndex">
+<span class="sig-name descname"><span class="pre">ObjectIndex</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pyetg1510.mailbox.sdo_application_interface.SdoEntry" title="pyetg1510.mailbox.sdo_application_interface.SdoEntry"><span class="pre">pyetg1510.mailbox.sdo_application_interface.SdoEntry</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Field(name=None,type=None,default=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,default_factory=&lt;function</span> <span class="pre">ODList.&lt;lambda&gt;&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),kw_only=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,_field_type=None)</span></em><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.ODList.ObjectIndex" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SDODataFactory">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyetg1510.mailbox.sdo_application_interface.</span></span><span class="sig-name descname"><span class="pre">SDODataFactory</span></span><a class="reference internal" href="_modules/pyetg1510/mailbox/sdo_application_interface.html#SDODataFactory"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SDODataFactory" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス:<code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>SDO Data Factory 抽象クラス</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SDODataFactory.create">
+<span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">abc.ABCMeta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/sdo_application_interface.html#SDODataFactory.create"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SDODataFactory.create" title="この定義へのパーマリンク"></a></dt>
+<dd><p>SDO data 生成メソッドSDODataBodyオブジェクトを生成してインデックスに対応する辞書へ登録する抽象クラス</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong>(<em>int</em>)--SDOインデックス</p></li>
+<li><p><strong>template</strong>(<em>AbstructSdoDataBody.__class__</em>)--<code class="xref py py-obj docutils literal notranslate"><span class="pre">SDOメタデータ</span></code>に定義された<code class="xref py py-obj docutils literal notranslate"><span class="pre">response_container</span></code>に定義したテンプレートクラス</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SDODataFactory.createProduct">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">createProduct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">template</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">abc.ABCMeta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/sdo_application_interface.html#SDODataFactory.createProduct"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SDODataFactory.createProduct" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SDODataFactory.registerProduct">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">registerProduct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/sdo_application_interface.html#SDODataFactory.registerProduct"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SDODataFactory.registerProduct" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SDOInfoDescription">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyetg1510.mailbox.sdo_application_interface.</span></span><span class="sig-name descname"><span class="pre">SDOInfoDescription</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/sdo_application_interface.html#SDOInfoDescription"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SDOInfoDescription" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス:<a class="reference internal" href="#pyetg1510.mailbox.sdo_application_interface.SdoDataBody" title="pyetg1510.mailbox.sdo_application_interface.SdoDataBody"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyetg1510.mailbox.sdo_application_interface.SdoDataBody</span></code></a></p>
+<p>個々のSDO Indexの詳細情報</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SDOInfoDescription.DataType">
+<span class="sig-name descname"><span class="pre">DataType</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pyetg1510.mailbox.sdo_application_interface.SdoEntry" title="pyetg1510.mailbox.sdo_application_interface.SdoEntry"><span class="pre">pyetg1510.mailbox.sdo_application_interface.SdoEntry</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Field(name=None,type=None,default=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,default_factory=&lt;function</span> <span class="pre">SDOInfoDescription.&lt;lambda&gt;&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),kw_only=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,_field_type=None)</span></em><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SDOInfoDescription.DataType" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SDOInfoDescription.Index">
+<span class="sig-name descname"><span class="pre">Index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pyetg1510.mailbox.sdo_application_interface.SdoEntry" title="pyetg1510.mailbox.sdo_application_interface.SdoEntry"><span class="pre">pyetg1510.mailbox.sdo_application_interface.SdoEntry</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Field(name=None,type=None,default=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,default_factory=&lt;function</span> <span class="pre">SDOInfoDescription.&lt;lambda&gt;&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),kw_only=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,_field_type=None)</span></em><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SDOInfoDescription.Index" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SDOInfoDescription.MaxSubindex">
+<span class="sig-name descname"><span class="pre">MaxSubindex</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pyetg1510.mailbox.sdo_application_interface.SdoEntry" title="pyetg1510.mailbox.sdo_application_interface.SdoEntry"><span class="pre">pyetg1510.mailbox.sdo_application_interface.SdoEntry</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Field(name=None,type=None,default=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,default_factory=&lt;function</span> <span class="pre">SDOInfoDescription.&lt;lambda&gt;&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),kw_only=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,_field_type=None)</span></em><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SDOInfoDescription.MaxSubindex" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SDOInfoDescription.Name">
+<span class="sig-name descname"><span class="pre">Name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pyetg1510.mailbox.sdo_application_interface.SdoEntry" title="pyetg1510.mailbox.sdo_application_interface.SdoEntry"><span class="pre">pyetg1510.mailbox.sdo_application_interface.SdoEntry</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Field(name=None,type=None,default=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,default_factory=&lt;function</span> <span class="pre">SDOInfoDescription.&lt;lambda&gt;&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),kw_only=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,_field_type=None)</span></em><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SDOInfoDescription.Name" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SDOInfoDescription.ObjectCode">
+<span class="sig-name descname"><span class="pre">ObjectCode</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pyetg1510.mailbox.sdo_application_interface.SdoEntry" title="pyetg1510.mailbox.sdo_application_interface.SdoEntry"><span class="pre">pyetg1510.mailbox.sdo_application_interface.SdoEntry</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Field(name=None,type=None,default=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,default_factory=&lt;function</span> <span class="pre">SDOInfoDescription.&lt;lambda&gt;&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),kw_only=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,_field_type=None)</span></em><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SDOInfoDescription.ObjectCode" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SDOInfoEntry">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyetg1510.mailbox.sdo_application_interface.</span></span><span class="sig-name descname"><span class="pre">SDOInfoEntry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/sdo_application_interface.html#SDOInfoEntry"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SDOInfoEntry" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス:<a class="reference internal" href="#pyetg1510.mailbox.sdo_application_interface.SdoDataBody" title="pyetg1510.mailbox.sdo_application_interface.SdoDataBody"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyetg1510.mailbox.sdo_application_interface.SdoDataBody</span></code></a></p>
+<p>SDOエントリ情報</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SDOInfoEntry.BitLength">
+<span class="sig-name descname"><span class="pre">BitLength</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pyetg1510.mailbox.sdo_application_interface.SdoEntry" title="pyetg1510.mailbox.sdo_application_interface.SdoEntry"><span class="pre">pyetg1510.mailbox.sdo_application_interface.SdoEntry</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Field(name=None,type=None,default=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,default_factory=&lt;function</span> <span class="pre">SDOInfoEntry.&lt;lambda&gt;&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),kw_only=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,_field_type=None)</span></em><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SDOInfoEntry.BitLength" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SDOInfoEntry.Data">
+<span class="sig-name descname"><span class="pre">Data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pyetg1510.mailbox.sdo_application_interface.SdoEntry" title="pyetg1510.mailbox.sdo_application_interface.SdoEntry"><span class="pre">pyetg1510.mailbox.sdo_application_interface.SdoEntry</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Field(name=None,type=None,default=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,default_factory=&lt;function</span> <span class="pre">SDOInfoEntry.&lt;lambda&gt;&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),kw_only=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,_field_type=None)</span></em><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SDOInfoEntry.Data" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SDOInfoEntry.DataType">
+<span class="sig-name descname"><span class="pre">DataType</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pyetg1510.mailbox.sdo_application_interface.SdoEntry" title="pyetg1510.mailbox.sdo_application_interface.SdoEntry"><span class="pre">pyetg1510.mailbox.sdo_application_interface.SdoEntry</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Field(name=None,type=None,default=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,default_factory=&lt;function</span> <span class="pre">SDOInfoEntry.&lt;lambda&gt;&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),kw_only=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,_field_type=None)</span></em><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SDOInfoEntry.DataType" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SDOInfoEntry.Index">
+<span class="sig-name descname"><span class="pre">Index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pyetg1510.mailbox.sdo_application_interface.SdoEntry" title="pyetg1510.mailbox.sdo_application_interface.SdoEntry"><span class="pre">pyetg1510.mailbox.sdo_application_interface.SdoEntry</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Field(name=None,type=None,default=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,default_factory=&lt;function</span> <span class="pre">SDOInfoEntry.&lt;lambda&gt;&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),kw_only=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,_field_type=None)</span></em><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SDOInfoEntry.Index" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SDOInfoEntry.ObjectAccess">
+<span class="sig-name descname"><span class="pre">ObjectAccess</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pyetg1510.mailbox.sdo_application_interface.SdoEntry" title="pyetg1510.mailbox.sdo_application_interface.SdoEntry"><span class="pre">pyetg1510.mailbox.sdo_application_interface.SdoEntry</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Field(name=None,type=None,default=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,default_factory=&lt;function</span> <span class="pre">SDOInfoEntry.&lt;lambda&gt;&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),kw_only=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,_field_type=None)</span></em><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SDOInfoEntry.ObjectAccess" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SDOInfoEntry.Subindex">
+<span class="sig-name descname"><span class="pre">Subindex</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pyetg1510.mailbox.sdo_application_interface.SdoEntry" title="pyetg1510.mailbox.sdo_application_interface.SdoEntry"><span class="pre">pyetg1510.mailbox.sdo_application_interface.SdoEntry</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Field(name=None,type=None,default=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,default_factory=&lt;function</span> <span class="pre">SDOInfoEntry.&lt;lambda&gt;&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),kw_only=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,_field_type=None)</span></em><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SDOInfoEntry.Subindex" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SDOInfoEntry.ValueInfo">
+<span class="sig-name descname"><span class="pre">ValueInfo</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pyetg1510.mailbox.sdo_application_interface.SdoEntry" title="pyetg1510.mailbox.sdo_application_interface.SdoEntry"><span class="pre">pyetg1510.mailbox.sdo_application_interface.SdoEntry</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Field(name=None,type=None,default=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,default_factory=&lt;function</span> <span class="pre">SDOInfoEntry.&lt;lambda&gt;&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),kw_only=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,_field_type=None)</span></em><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SDOInfoEntry.ValueInfo" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SDOInfoError">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyetg1510.mailbox.sdo_application_interface.</span></span><span class="sig-name descname"><span class="pre">SDOInfoError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/sdo_application_interface.html#SDOInfoError"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SDOInfoError" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス:<a class="reference internal" href="#pyetg1510.mailbox.sdo_application_interface.SdoDataBody" title="pyetg1510.mailbox.sdo_application_interface.SdoDataBody"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyetg1510.mailbox.sdo_application_interface.SdoDataBody</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SDOInfoError.AbortCode">
+<span class="sig-name descname"><span class="pre">AbortCode</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pyetg1510.mailbox.sdo_application_interface.SdoEntry" title="pyetg1510.mailbox.sdo_application_interface.SdoEntry"><span class="pre">pyetg1510.mailbox.sdo_application_interface.SdoEntry</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Field(name=None,type=None,default=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,default_factory=&lt;function</span> <span class="pre">SDOInfoError.&lt;lambda&gt;&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),kw_only=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,_field_type=None)</span></em><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SDOInfoError.AbortCode" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SdoDataBody">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyetg1510.mailbox.sdo_application_interface.</span></span><span class="sig-name descname"><span class="pre">SdoDataBody</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/sdo_application_interface.html#SdoDataBody"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SdoDataBody" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス:<a class="reference internal" href="#pyetg1510.mailbox.sdo_application_interface.AbstructSdoDataBody" title="pyetg1510.mailbox.sdo_application_interface.AbstructSdoDataBody"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyetg1510.mailbox.sdo_application_interface.AbstructSdoDataBody</span></code></a></p>
+<p>SDODataBody実装クラス</p>
+<dl class="field-list simple">
+<dt class="field-odd">例外</dt>
+<dd class="field-odd"><p><strong>TypeError</strong>--SdoEntry以外のメンバを登録した場合に発生</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SdoDataBody.get_value">
+<span class="sig-name descname"><span class="pre">get_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sub_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pyetg1510.mailbox.sdo_application_interface.SdoEntry" title="pyetg1510.mailbox.sdo_application_interface.SdoEntry"><span class="pre">pyetg1510.mailbox.sdo_application_interface.SdoEntry</span></a></span></span><a class="reference internal" href="_modules/pyetg1510/mailbox/sdo_application_interface.html#SdoDataBody.get_value"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SdoDataBody.get_value" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SdoDataBody.set_value">
+<span class="sig-name descname"><span class="pre">set_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sub_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pyetg1510.mailbox.sdo_application_interface.SdoEntry" title="pyetg1510.mailbox.sdo_application_interface.SdoEntry"><span class="pre">pyetg1510.mailbox.sdo_application_interface.SdoEntry</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/sdo_application_interface.html#SdoDataBody.set_value"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SdoDataBody.set_value" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SdoDataBody.total_size">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">total_size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SdoDataBody.total_size" title="この定義へのパーマリンク"></a></dt>
+<dd><p>total size property get</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SdoDataBody.unpack_format">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unpack_format</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SdoDataBody.unpack_format" title="この定義へのパーマリンク"></a></dt>
+<dd><p>struct.unpack の formatを生成する</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SdoDataBody.values">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">values</span></span><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SdoDataBody.values" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SdoDataController">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyetg1510.mailbox.sdo_application_interface.</span></span><span class="sig-name descname"><span class="pre">SdoDataController</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">session</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pyetg1510.mailbox.connection.EtherCATMasterConnection" title="pyetg1510.mailbox.connection.EtherCATMasterConnection"><span class="pre">pyetg1510.mailbox.connection.EtherCATMasterConnection</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sdo_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pyetg1510.mailbox.sdo_application_interface.SdoDataBody" title="pyetg1510.mailbox.sdo_application_interface.SdoDataBody"><span class="pre">pyetg1510.mailbox.sdo_application_interface.SdoDataBody</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">get_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/sdo_application_interface.html#SdoDataController"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SdoDataController" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス:<code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>SDO メッセージサービス</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>session</strong>(<a class="reference internal" href="#pyetg1510.mailbox.connection.EtherCATMasterConnection" title="pyetg1510.mailbox.connection.EtherCATMasterConnection"><em>EtherCATMasterConnection</em></a>)--通信コネクタオブジェクト</p></li>
+<li><p><strong>get_info</strong>(<em>bool</em>)--SDO Information serviceの問い合わせ時はTrueにする</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SdoDataController.fetch">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fetch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sdo_metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pyetg1510.mailbox.sdo_application_interface.SdoMetadata" title="pyetg1510.mailbox.sdo_application_interface.SdoMetadata"><span class="pre">pyetg1510.mailbox.sdo_application_interface.SdoMetadata</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sdo_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pyetg1510.mailbox.sdo_application_interface.SdoDataBody" title="pyetg1510.mailbox.sdo_application_interface.SdoDataBody"><span class="pre">pyetg1510.mailbox.sdo_application_interface.SdoDataBody</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/sdo_application_interface.html#SdoDataController.fetch"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SdoDataController.fetch" title="この定義へのパーマリンク"></a></dt>
+<dd><p>SDO Upload リクエストを発行し、SdoDataBodyモデルへマッピングする</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sdo_metadata</strong>(<em>SdoMetaData</em>)--<code class="xref py py-obj docutils literal notranslate"><span class="pre">SDOメタデータ</span></code></p></li>
+<li><p><strong>sdo_data</strong>(<a class="reference internal" href="#pyetg1510.mailbox.sdo_application_interface.SdoDataBody" title="pyetg1510.mailbox.sdo_application_interface.SdoDataBody"><em>SdoDataBody</em></a>)--受信したSDOデータを格納するコンテナオブジェクト</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SdoDataController.get_info">
+<span class="sig-name descname"><span class="pre">get_info</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SdoDataController.get_info" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SdoDataController.sdo_data">
+<span class="sig-name descname"><span class="pre">sdo_data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pyetg1510.mailbox.sdo_application_interface.SdoDataBody" title="pyetg1510.mailbox.sdo_application_interface.SdoDataBody"><span class="pre">pyetg1510.mailbox.sdo_application_interface.SdoDataBody</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SdoDataController.sdo_data" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SdoDataController.session">
+<span class="sig-name descname"><span class="pre">session</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pyetg1510.mailbox.connection.EtherCATMasterConnection" title="pyetg1510.mailbox.connection.EtherCATMasterConnection"><span class="pre">pyetg1510.mailbox.connection.EtherCATMasterConnection</span></a></em><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SdoDataController.session" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SdoEntry">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyetg1510.mailbox.sdo_application_interface.</span></span><span class="sig-name descname"><span class="pre">SdoEntry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sub_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pyetg1510.mailbox.sdo_application_interface.T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/sdo_application_interface.html#SdoEntry"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SdoEntry" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス:<code class="xref py py-class docutils literal notranslate"><span class="pre">Generic</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">pyetg1510.mailbox.sdo_application_interface.T</span></code>]</p>
+<p>SDOデータコンテナ</p>
+<p>ジェネリクス型変数を持つため、インスタンス定義時には型を指定すること。</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SdoEntry.enable">
+<span class="sig-name descname"><span class="pre">enable</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SdoEntry.enable" title="この定義へのパーマリンク"></a></dt>
+<dd><p>Enabled flag by SDO information service</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SdoEntry.format">
+<span class="sig-name descname"><span class="pre">format</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SdoEntry.format" title="この定義へのパーマリンク"></a></dt>
+<dd><p>struct.unpackで指定するformatの文字列</p>
+<p><a class="reference external" href="https://docs.python.org/ja/3/library/struct.html#format-characters">https://docs.python.org/ja/3/library/struct.html#format-characters</a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SdoEntry.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SdoEntry.name" title="この定義へのパーマリンク"></a></dt>
+<dd><p>SDO Entry名</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SdoEntry.size">
+<span class="sig-name descname"><span class="pre">size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SdoEntry.size" title="この定義へのパーマリンク"></a></dt>
+<dd><p>データサイズ（Byte）データ型により指定するべきサイズの意味が異なる。</p>
+<dl class="simple">
+<dt>プリミティブ型:</dt><dd><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">format</span></code>で指定したサイズ。例えば5つの連続した32bit整数であればformatには<code class="docutils literal notranslate"><span class="pre">5I</span></code>と指定され、サイズは5 x 4 = 20byteが得られる。</p>
+</dd>
+<dt>コレクション型:</dt><dd><p>要素数 *<code class="xref py py-mod docutils literal notranslate"><span class="pre">format</span></code>で指定したサイズ</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SdoEntry.sub_index">
+<span class="sig-name descname"><span class="pre">sub_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SdoEntry.sub_index" title="この定義へのパーマリンク"></a></dt>
+<dd><p>SDO サブインデックス</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SdoEntry.value">
+<span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">pyetg1510.mailbox.sdo_application_interface.T</span></em><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SdoEntry.value" title="この定義へのパーマリンク"></a></dt>
+<dd><p>SDO 値</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SdoMetadata">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyetg1510.mailbox.sdo_application_interface.</span></span><span class="sig-name descname"><span class="pre">SdoMetadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sub_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">support_complete_access</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_sub_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request_container</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_ctypes.PyCStructType</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">response_container</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">abc.ABCMeta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/sdo_application_interface.html#SdoMetadata"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SdoMetadata" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス:<code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>SDOメタデータ</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SdoMetadata.index">
+<span class="sig-name descname"><span class="pre">index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SdoMetadata.index" title="この定義へのパーマリンク"></a></dt>
+<dd><p>インデックス番号</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SdoMetadata.max_sub_index">
+<span class="sig-name descname"><span class="pre">max_sub_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SdoMetadata.max_sub_index" title="この定義へのパーマリンク"></a></dt>
+<dd><p>最大サブインデックス番号</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SdoMetadata.request_container">
+<span class="sig-name descname"><span class="pre">request_container</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">_ctypes.PyCStructType</span></em><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SdoMetadata.request_container" title="この定義へのパーマリンク"></a></dt>
+<dd><p>アップロードコマンドのリクエストデータを格納するctype.Structureを基底クラスとしたコンテナクラスを定義</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SdoMetadata.response_container">
+<span class="sig-name descname"><span class="pre">response_container</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">abc.ABCMeta</span></em><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SdoMetadata.response_container" title="この定義へのパーマリンク"></a></dt>
+<dd><p>アップロードコマンドのレスポンスデータを格納するSdoDataBodyを基底クラスとしたコンテナクラスを定義</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SdoMetadata.sub_index">
+<span class="sig-name descname"><span class="pre">sub_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SdoMetadata.sub_index" title="この定義へのパーマリンク"></a></dt>
+<dd><p>サブインデックス番号</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SdoMetadata.support_complete_access">
+<span class="sig-name descname"><span class="pre">support_complete_access</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SdoMetadata.support_complete_access" title="この定義へのパーマリンク"></a></dt>
+<dd><p>complete access可能エントリ</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SdoMetadataMapper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyetg1510.mailbox.sdo_application_interface.</span></span><span class="sig-name descname"><span class="pre">SdoMetadataMapper</span></span><a class="reference internal" href="_modules/pyetg1510/mailbox/sdo_application_interface.html#SdoMetadataMapper"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SdoMetadataMapper" title="この定義へのパーマリンク"></a></dt>
+<dd><p>ベースクラス:<code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>SDOデータマッピングクラス</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SdoMetadataMapper.find">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">find</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pyetg1510.mailbox.sdo_application_interface.MappingMember" title="pyetg1510.mailbox.sdo_application_interface.MappingMember"><span class="pre">pyetg1510.mailbox.sdo_application_interface.MappingMember</span></a></span></span><a class="reference internal" href="_modules/pyetg1510/mailbox/sdo_application_interface.html#SdoMetadataMapper.find"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SdoMetadataMapper.find" title="この定義へのパーマリンク"></a></dt>
+<dd><p>指定したインデックスに応じたODマッピング定義オブジェクトを返す</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ</dt>
+<dd class="field-odd"><p><strong>index</strong>(<em>int</em>)--SDOインデックス番号</p>
+</dd>
+<dt class="field-even">戻り値</dt>
+<dd class="field-even"><p>ODマッピング定義オブジェクト</p>
+</dd>
+<dt class="field-odd">戻り値の型</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pyetg1510.mailbox.sdo_application_interface.MappingMember" title="pyetg1510.mailbox.sdo_application_interface.MappingMember">MappingMember</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.SdoMetadataMapper.find_start">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">find_start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyetg1510/mailbox/sdo_application_interface.html#SdoMetadataMapper.find_start"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.SdoMetadataMapper.find_start" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyetg1510.mailbox.sdo_application_interface.is_primitive">
+<span class="sig-prename descclassname"><span class="pre">pyetg1510.mailbox.sdo_application_interface.</span></span><span class="sig-name descname"><span class="pre">is_primitive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyetg1510.mailbox.sdo_application_interface.is_primitive" title="この定義へのパーマリンク"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-pyetg1510.mailbox">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pyetg1510.mailbox" title="このヘッドラインへのパーマリンク"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="pyetg1510.helper.html" class="btn btn-neutral float-left" title="pyetg1510.helper package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Beckhoff Automation K.K..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

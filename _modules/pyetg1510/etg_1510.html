@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pyetg1510.etg_1510 &mdash; PyETG1510  ドキュメント</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="検索" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            PyETG1510
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">APIドキュメント</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">ETG.1510 Master Diagnosis Interface client library for Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">pyetg1510</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PyETG1510</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">モジュールコード</a></li>
+      <li class="breadcrumb-item active">pyetg1510.etg_1510</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>pyetg1510.etg_1510 のソースコード</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">ETG.1510データ収集制御モジュール。 ``sdo_*xxx_`` から始まるモジュールで定義されたメタデータを通じてデータモデルを参照。</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">fields</span>
+<span class="kn">from</span> <span class="nn">pyetg1510.mailbox.connection</span> <span class="kn">import</span> <span class="n">EtherCATMasterConnection</span>
+<span class="kn">from</span> <span class="nn">pyetg1510.mailbox.sdo_application_interface</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">SdoDataBody</span><span class="p">,</span>
+    <span class="n">ConcreteSDODataFactory</span><span class="p">,</span>
+    <span class="n">is_primitive</span><span class="p">,</span>
+    <span class="n">SdoMetadataMapper</span><span class="p">,</span>
+    <span class="n">MappingMember</span><span class="p">,</span>
+    <span class="n">SdoDataController</span><span class="p">,</span>
+    <span class="n">ODListFormat</span><span class="p">,</span>
+    <span class="n">SDOInfoDescriptionFormat</span><span class="p">,</span>
+    <span class="n">SDOInfoEntryFormat</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">pyetg1510.sdo_1xxx_master_object</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">DeviceTypeFormat</span><span class="p">,</span>
+    <span class="n">DeviceNameFormat</span><span class="p">,</span>
+    <span class="n">HardwareVersionFormat</span><span class="p">,</span>
+    <span class="n">SoftwareVersionFormat</span><span class="p">,</span>
+    <span class="n">IndentityObjectFormat</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">pyetg1510.sdo_8xxx_configuration_data</span> <span class="kn">import</span> <span class="n">ConfigurationDataFormat</span>
+<span class="kn">from</span> <span class="nn">pyetg1510.sdo_9xxx_information_data</span> <span class="kn">import</span> <span class="n">InformationDataFormat</span>
+<span class="kn">from</span> <span class="nn">pyetg1510.sdo_axxx_master_diagnosis</span> <span class="kn">import</span> <span class="n">DiagnosisDataFormat</span>
+<span class="kn">from</span> <span class="nn">pyetg1510.sdo_fxxx_controls</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">DetectModulesCommandFormat</span><span class="p">,</span>
+    <span class="n">MasterDiagDataFormat</span><span class="p">,</span>
+    <span class="n">DiagInterfaceControlFormat</span><span class="p">,</span>
+    <span class="n">ConfiguredAddressListFormat</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">pyetg1510.helper</span> <span class="kn">import</span> <span class="n">SysLog</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">SysLog</span><span class="o">.</span><span class="n">logger</span>
+
+
+<div class="viewcode-block" id="MasterDiagnosisMetadataMapper"><a class="viewcode-back" href="../../pyetg1510.html#pyetg1510.etg_1510.MasterDiagnosisMetadataMapper">[ドキュメント]</a><span class="k">class</span> <span class="nc">MasterDiagnosisMetadataMapper</span><span class="p">(</span><span class="n">SdoMetadataMapper</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;定義された :obj:`メタデータ &lt;pyetg1510.mailbox.sdo_data_factory.SdoMetadata&gt;` とそのインデックス範囲を関連付けるクラス</span>
+
+<span class="sd">    ベースクラス :mod:`pyetg1510.mailbox.sdo_data_factory.SdoMetadataMapper.find` メソッドにより何れかのメンバーをセレクトすることができる。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">device_type</span> <span class="o">=</span> <span class="n">MappingMember</span><span class="p">(</span><span class="n">index_range</span><span class="o">=</span><span class="p">(</span><span class="mh">0x1000</span><span class="p">,</span> <span class="mh">0x1000</span><span class="p">),</span> <span class="n">metadata</span><span class="o">=</span><span class="n">DeviceTypeFormat</span><span class="p">)</span>
+    <span class="n">device_name</span> <span class="o">=</span> <span class="n">MappingMember</span><span class="p">(</span><span class="n">index_range</span><span class="o">=</span><span class="p">(</span><span class="mh">0x1008</span><span class="p">,</span> <span class="mh">0x1008</span><span class="p">),</span> <span class="n">metadata</span><span class="o">=</span><span class="n">DeviceNameFormat</span><span class="p">)</span>
+    <span class="n">hardware_vaersion</span> <span class="o">=</span> <span class="n">MappingMember</span><span class="p">(</span><span class="n">index_range</span><span class="o">=</span><span class="p">(</span><span class="mh">0x1009</span><span class="p">,</span> <span class="mh">0x1009</span><span class="p">),</span> <span class="n">metadata</span><span class="o">=</span><span class="n">HardwareVersionFormat</span><span class="p">)</span>
+    <span class="n">software_vaersion</span> <span class="o">=</span> <span class="n">MappingMember</span><span class="p">(</span><span class="n">index_range</span><span class="o">=</span><span class="p">(</span><span class="mh">0x100A</span><span class="p">,</span> <span class="mh">0x100A</span><span class="p">),</span> <span class="n">metadata</span><span class="o">=</span><span class="n">SoftwareVersionFormat</span><span class="p">)</span>
+    <span class="n">indentity_object</span> <span class="o">=</span> <span class="n">MappingMember</span><span class="p">(</span><span class="n">index_range</span><span class="o">=</span><span class="p">(</span><span class="mh">0x1018</span><span class="p">,</span> <span class="mh">0x1018</span><span class="p">),</span> <span class="n">metadata</span><span class="o">=</span><span class="n">IndentityObjectFormat</span><span class="p">)</span>
+    <span class="n">master_configuration</span> <span class="o">=</span> <span class="n">MappingMember</span><span class="p">(</span><span class="n">index_range</span><span class="o">=</span><span class="p">(</span><span class="mh">0x8000</span><span class="p">,</span> <span class="mh">0x8FFF</span><span class="p">),</span> <span class="n">metadata</span><span class="o">=</span><span class="n">ConfigurationDataFormat</span><span class="p">)</span>
+    <span class="n">master_information</span> <span class="o">=</span> <span class="n">MappingMember</span><span class="p">(</span><span class="n">index_range</span><span class="o">=</span><span class="p">(</span><span class="mh">0x9000</span><span class="p">,</span> <span class="mh">0x9FFF</span><span class="p">),</span> <span class="n">metadata</span><span class="o">=</span><span class="n">InformationDataFormat</span><span class="p">)</span>
+    <span class="n">diagnosis_data</span> <span class="o">=</span> <span class="n">MappingMember</span><span class="p">(</span><span class="n">index_range</span><span class="o">=</span><span class="p">(</span><span class="mh">0xA000</span><span class="p">,</span> <span class="mh">0xAFFF</span><span class="p">),</span> <span class="n">metadata</span><span class="o">=</span><span class="n">DiagnosisDataFormat</span><span class="p">)</span>
+    <span class="n">detect_modules_command</span> <span class="o">=</span> <span class="n">MappingMember</span><span class="p">(</span><span class="n">index_range</span><span class="o">=</span><span class="p">(</span><span class="mh">0xF002</span><span class="p">,</span> <span class="mh">0xF002</span><span class="p">),</span> <span class="n">metadata</span><span class="o">=</span><span class="n">DetectModulesCommandFormat</span><span class="p">)</span>
+    <span class="n">configured_address_list</span> <span class="o">=</span> <span class="n">MappingMember</span><span class="p">(</span><span class="n">index_range</span><span class="o">=</span><span class="p">(</span><span class="mh">0xF020</span><span class="p">,</span> <span class="mh">0xF020</span><span class="p">),</span> <span class="n">metadata</span><span class="o">=</span><span class="n">ConfiguredAddressListFormat</span><span class="p">)</span>
+    <span class="n">master_diag_data</span> <span class="o">=</span> <span class="n">MappingMember</span><span class="p">(</span><span class="n">index_range</span><span class="o">=</span><span class="p">(</span><span class="mh">0xF120</span><span class="p">,</span> <span class="mh">0xF120</span><span class="p">),</span> <span class="n">metadata</span><span class="o">=</span><span class="n">MasterDiagDataFormat</span><span class="p">)</span>
+    <span class="n">diag_interface_control</span> <span class="o">=</span> <span class="n">MappingMember</span><span class="p">(</span><span class="n">index_range</span><span class="o">=</span><span class="p">(</span><span class="mh">0xF200</span><span class="p">,</span> <span class="mh">0xF200</span><span class="p">),</span> <span class="n">metadata</span><span class="o">=</span><span class="n">DiagInterfaceControlFormat</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="MasterODSpecification"><a class="viewcode-back" href="../../pyetg1510.html#pyetg1510.etg_1510.MasterODSpecification">[ドキュメント]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">MasterODSpecification</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;SDO Information service [#f1]_  により、収集可能な、EtherCAT main device のサポートするSDO情報を管理するクラス。</span>
+
+<span class="sd">    .. [#f1] `ETG.1000.6 &lt;https://www.ethercat.org/jp/downloads/downloads_A02E436C7A97479F9261FDFA8A6D71E5.htm&gt;`_ Section 5.6.3</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        connection(EtherCATMasterConnection): 通信コネクタオブジェクト</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">connection</span><span class="p">:</span> <span class="n">EtherCATMasterConnection</span>
+    <span class="n">sdo_data_entity</span><span class="p">:</span> <span class="n">ConcreteSDODataFactory</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">ConcreteSDODataFactory</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_handler</span> <span class="o">=</span> <span class="n">SdoDataController</span><span class="p">(</span><span class="n">session</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="p">,</span> <span class="n">get_info</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_index</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_subindex</span> <span class="o">=</span> <span class="mi">0</span>
+
+<div class="viewcode-block" id="MasterODSpecification.get_object_dictionary"><a class="viewcode-back" href="../../pyetg1510.html#pyetg1510.etg_1510.MasterODSpecification.get_object_dictionary">[ドキュメント]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_object_dictionary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;SDO Information serviceによりmain deviceのODを問い合わせ、その仕様をsdo_data_entryへ登録。</span>
+
+<span class="sd">        次の手順で実行する。</span>
+
+<span class="sd">        1. OD Listを収集し、 :obj:`メタデータマッパ &lt;pyetg1510.etg_1510.MasterDiagnosisMetadataMapper&gt;` を用いて</span>
+<span class="sd">           対応する :obj:`メタデータ &lt;pyetg1510.mailbox.sdo_data_factory.SdoMetadata&gt;` を取得</span>
+<span class="sd">        2. :mod:`ConcreteSDODataFactory` によりテンプレートを元に実体を作成し、sdo_data_entryに登録。</span>
+<span class="sd">        3. 個々のODのDescriptionを要求し、作成した実体をレスポンスに従い更新。</span>
+<span class="sd">        4. sdo_data_entryに問い合わせたデータが作成される。</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Fetch OD List&quot;</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_handler</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">sdo_metadata</span><span class="o">=</span><span class="n">ODListFormat</span><span class="p">,</span> <span class="n">sdo_data</span><span class="o">=</span><span class="n">ODListFormat</span><span class="o">.</span><span class="n">response_container</span><span class="p">())</span>
+
+        <span class="k">for</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_index</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_handler</span><span class="o">.</span><span class="n">sdo_data</span><span class="o">.</span><span class="n">ObjectIndex</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;==== Index </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">current_index</span><span class="si">}</span><span class="s2">, format :</span><span class="si">{</span><span class="n">ODListFormat</span><span class="o">.</span><span class="n">response_container</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">_selected</span><span class="p">:</span> <span class="n">MappingMember</span> <span class="o">=</span> <span class="n">MasterDiagnosisMetadataMapper</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_index</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">_selected</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="c1"># Create instances by sdo factory.</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">sdo_data_entity</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">current_index</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="n">_selected</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">response_container</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Index : </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">current_index</span><span class="si">}</span><span class="s2"> is not defined for any specification.&quot;</span><span class="p">)</span>
+                <span class="k">continue</span>
+            <span class="n">SDOInfoDescriptionFormat</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_index</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Fetch Object Description&quot;</span><span class="p">)</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_handler</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span>
+                <span class="n">sdo_metadata</span><span class="o">=</span><span class="n">SDOInfoDescriptionFormat</span><span class="p">,</span> <span class="n">sdo_data</span><span class="o">=</span><span class="n">SDOInfoDescriptionFormat</span><span class="o">.</span><span class="n">response_container</span><span class="p">()</span>
+            <span class="p">)</span>
+            <span class="c1"># apply max subindex to configuration model</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_handler</span><span class="o">.</span><span class="n">sdo_data</span><span class="p">,</span> <span class="s2">&quot;MaxSubindex&quot;</span><span class="p">):</span>
+                <span class="n">_selected</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">max_sub_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_handler</span><span class="o">.</span><span class="n">sdo_data</span><span class="o">.</span><span class="n">MaxSubindex</span><span class="o">.</span><span class="n">value</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">_selected</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">max_sub_index</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Max sub index: </span><span class="si">{</span><span class="n">_selected</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">max_sub_index</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sdo_data_entity</span><span class="o">.</span><span class="n">entries</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">current_index</span><span class="p">]):</span>
+                <span class="n">entry</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sdo_data_entity</span><span class="o">.</span><span class="n">entries</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">current_index</span><span class="p">],</span> <span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">current_subindex</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="n">sub_index</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   ---- Subindex </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">current_subindex</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">SDOInfoEntryFormat</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_index</span>
+                <span class="n">SDOInfoEntryFormat</span><span class="o">.</span><span class="n">sub_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_subindex</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Fetch Entry Description&quot;</span><span class="p">)</span>
+                <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_handler</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span>
+                    <span class="n">sdo_metadata</span><span class="o">=</span><span class="n">SDOInfoEntryFormat</span><span class="p">,</span> <span class="n">sdo_data</span><span class="o">=</span><span class="n">SDOInfoEntryFormat</span><span class="o">.</span><span class="n">response_container</span><span class="p">()</span>
+                <span class="p">)</span>
+                <span class="k">if</span> <span class="s2">&quot;AbortCode&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_handler</span><span class="o">.</span><span class="n">sdo_data</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">entry</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">entry</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_handler</span><span class="o">.</span><span class="n">sdo_data</span><span class="o">.</span><span class="n">Data</span><span class="o">.</span><span class="n">value</span>
+                        <span class="k">if</span> <span class="n">is_primitive</span><span class="p">(</span><span class="n">entry</span><span class="o">.</span><span class="n">value</span><span class="p">):</span>
+                            <span class="n">entry</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_handler</span><span class="o">.</span><span class="n">sdo_data</span><span class="o">.</span><span class="n">BitLength</span><span class="o">.</span><span class="n">value</span> <span class="o">/</span> <span class="mi">8</span><span class="p">)</span>
+                        <span class="n">entry</span><span class="o">.</span><span class="n">enable</span> <span class="o">=</span> <span class="kc">True</span>
+                        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                            <span class="sa">f</span><span class="s2">&quot;Index: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">current_index</span><span class="si">}</span><span class="s2">. Subindex:</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">current_subindex</span><span class="si">}</span><span class="s2"> is Enabled. Size:</span><span class="si">{</span><span class="n">entry</span><span class="o">.</span><span class="n">size</span><span class="si">}</span><span class="s2">&quot;</span>
+                        <span class="p">)</span>
+                        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;     </span><span class="si">{</span><span class="n">entry</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">current_index</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">current_subindex</span><span class="si">}</span><span class="s2"> is not found on definition.&quot;</span><span class="p">)</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;============ Information data fetch complete ==============&quot;</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="ETG1510Profile"><a class="viewcode-back" href="../../pyetg1510.html#pyetg1510.etg_1510.ETG1510Profile">[ドキュメント]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">ETG1510Profile</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;ETG.1510 データ収集非同期イテレータ</span>
+
+<span class="sd">    master_od にセットしたODリストに従い、順次SDOを収集して返すイテレータクラス。</span>
+
+<span class="sd">    使用例:</span>
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            async def get_sdo_data():</span>
+<span class="sd">                # create iterator object</span>
+<span class="sd">                ittr = ETG1510Profile(master_od=&lt;&lt;MasterConfigurationクラスで作成したODデータモデル&gt;&gt;)</span>
+<span class="sd">                async for sdo in ittr:</span>
+<span class="sd">                    # sdo will be possible to get each SDO as SdoDataBody type or Dictionary type.</span>
+<span class="sd">                    pass</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        master_od(MasterODSpecification): :meth:`get_object_dictionaryメソッド &lt;pyetg1510.etg_1510.MasterODSpecification.get_object_dictionary&gt;`</span>
+<span class="sd">                                        を実行してODを収集完了した後のMasterODSpecificationオブジェクト</span>
+<span class="sd">        watch_index_list(List[int]): 監視対象のSDOインデックスリスト。未定義の場合はOD全て対象。</span>
+
+<span class="sd">    Return:</span>
+<span class="sd">        Tuple[int, SdoDataBody]: SDOインデックス, 取得したSDOデータコンテナ</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">master_od</span><span class="p">:</span> <span class="n">MasterODSpecification</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;収集したメインデバイスのオブジェクトディクショナリ&quot;&quot;&quot;</span>
+    <span class="n">watch_index_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;イテレータで収集する際に、収集対象となるインデックスリストを指定する場合はそのリストを設定する。指定しない場合は全て返す&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_handler</span> <span class="o">=</span> <span class="n">SdoDataController</span><span class="p">(</span><span class="n">session</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">master_od</span><span class="o">.</span><span class="n">connection</span><span class="p">,</span> <span class="n">get_info</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">watch_address</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sdo_database</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">master_od</span><span class="o">.</span><span class="n">sdo_data_entity</span><span class="o">.</span><span class="n">entries</span>
+
+    <span class="k">def</span> <span class="fm">__aiter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="fm">__anext__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">watch_index_list</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">sdo_index_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">master_od</span><span class="o">.</span><span class="n">sdo_data_entity</span><span class="o">.</span><span class="n">entries</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">sdo_index_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">watch_index_list</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sdo_index_list</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">watch_address</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">watch_address</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">raise</span> <span class="ne">StopAsyncIteration</span>
+        <span class="c1"># ToDo: sdo_index_listの要素に self.master_od.sdo_data_entity.entries.keys() が含まれなければ異常終了する</span>
+        <span class="n">sdo_metadata</span> <span class="o">=</span> <span class="n">MasterDiagnosisMetadataMapper</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">sdo_index_list</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">watch_address</span><span class="p">])</span><span class="o">.</span><span class="n">metadata</span>
+        <span class="n">sdo_metadata</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">sdo_index_list</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">watch_address</span><span class="p">]</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;==== Fetch and update data index:</span><span class="si">{</span><span class="n">sdo_index_list</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">watch_address</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_handler</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span>
+            <span class="n">sdo_metadata</span><span class="o">=</span><span class="n">sdo_metadata</span><span class="p">,</span> <span class="n">sdo_data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sdo_database</span><span class="p">[</span><span class="n">sdo_index_list</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">watch_address</span><span class="p">]]</span>
+        <span class="p">)</span>
+        <span class="n">report</span> <span class="o">=</span> <span class="p">(</span><span class="n">sdo_index_list</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">watch_address</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_handler</span><span class="o">.</span><span class="n">sdo_data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">watch_address</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">report</span>
+
+<div class="viewcode-block" id="ETG1510Profile.get_sdo"><a class="viewcode-back" href="../../pyetg1510.html#pyetg1510.etg_1510.ETG1510Profile.get_sdo">[ドキュメント]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_sdo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SdoDataBody</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        指定したインデックスのSDOを取得する</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            index(int): SDOインデックス</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            SdoDataBody: 取得したSDOデータコンテナ</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">sdo_metadata</span> <span class="o">=</span> <span class="n">MasterDiagnosisMetadataMapper</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">metadata</span>
+        <span class="n">sdo_metadata</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">index</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_handler</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">sdo_metadata</span><span class="o">=</span><span class="n">sdo_metadata</span><span class="p">,</span> <span class="n">sdo_data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sdo_database</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_handler</span><span class="o">.</span><span class="n">sdo_data</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Beckhoff Automation K.K..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pyetg1510.sdo_fxxx_controls &mdash; PyETG1510  ドキュメント</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="検索" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            PyETG1510
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">APIドキュメント</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">ETG.1510 Master Diagnosis Interface client library for Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">pyetg1510</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PyETG1510</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">モジュールコード</a></li>
+      <li class="breadcrumb-item active">pyetg1510.sdo_fxxx_controls</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>pyetg1510.sdo_fxxx_controls のソースコード</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">0xf*** 台のMaster ODを定義したモジュール</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">pyetg1510.mailbox.sdo_application_interface</span> <span class="kn">import</span> <span class="n">SdoEntry</span><span class="p">,</span> <span class="n">SdoMetadata</span><span class="p">,</span> <span class="n">SdoDataBody</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">field</span>
+<span class="kn">from</span> <span class="nn">pyetg1510.mailbox</span> <span class="kn">import</span> <span class="n">SDORequest</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
+
+
+<div class="viewcode-block" id="DetectModulesCommand"><a class="viewcode-back" href="../../pyetg1510.html#pyetg1510.sdo_fxxx_controls.DetectModulesCommand">[ドキュメント]</a><span class="k">class</span> <span class="nc">DetectModulesCommand</span><span class="p">(</span><span class="n">SdoDataBody</span><span class="p">):</span>
+    <span class="n">NumberofEntries</span><span class="p">:</span> <span class="n">SdoEntry</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">SdoEntry</span><span class="p">[</span><span class="nb">int</span><span class="p">](</span><span class="n">sub_index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;B&quot;</span><span class="p">))</span>
+    <span class="n">ScanCommandRequest</span><span class="p">:</span> <span class="n">SdoEntry</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">SdoEntry</span><span class="p">[</span><span class="nb">str</span><span class="p">](</span><span class="n">sub_index</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;2s&quot;</span><span class="p">))</span>
+    <span class="n">ScanCommandStatus</span><span class="p">:</span> <span class="n">SdoEntry</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">SdoEntry</span><span class="p">[</span><span class="nb">int</span><span class="p">](</span><span class="n">sub_index</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;B&quot;</span><span class="p">))</span>
+    <span class="n">ScanCommandResponse</span><span class="p">:</span> <span class="n">SdoEntry</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">SdoEntry</span><span class="p">[</span><span class="nb">str</span><span class="p">](</span><span class="n">sub_index</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;6s&quot;</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="ConfiguredAddressList"><a class="viewcode-back" href="../../pyetg1510.html#pyetg1510.sdo_fxxx_controls.ConfiguredAddressList">[ドキュメント]</a><span class="k">class</span> <span class="nc">ConfiguredAddressList</span><span class="p">(</span><span class="n">SdoDataBody</span><span class="p">):</span>
+    <span class="n">NumberofSlaves</span><span class="p">:</span> <span class="n">SdoEntry</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">SdoEntry</span><span class="p">[</span><span class="nb">int</span><span class="p">](</span><span class="n">sub_index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;B&quot;</span><span class="p">))</span>
+    <span class="n">ConfiguredAddress</span><span class="p">:</span> <span class="n">SdoEntry</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">SdoEntry</span><span class="p">[</span><span class="nb">list</span><span class="p">](</span><span class="n">sub_index</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">125</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;H&quot;</span><span class="p">))</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">address_list</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">list</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ConfiguredAddress</span><span class="o">.</span><span class="n">enable</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ConfiguredAddress</span><span class="o">.</span><span class="n">value</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">NumberofSlaves</span><span class="o">.</span><span class="n">value</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="MasterDiagData"><a class="viewcode-back" href="../../pyetg1510.html#pyetg1510.sdo_fxxx_controls.MasterDiagData">[ドキュメント]</a><span class="k">class</span> <span class="nc">MasterDiagData</span><span class="p">(</span><span class="n">SdoDataBody</span><span class="p">):</span>
+    <span class="n">NumberOfEntries</span><span class="p">:</span> <span class="n">SdoEntry</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">SdoEntry</span><span class="p">[</span><span class="nb">int</span><span class="p">](</span><span class="n">sub_index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;B&quot;</span><span class="p">))</span>
+    <span class="n">CyclicLostFrames</span><span class="p">:</span> <span class="n">SdoEntry</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">SdoEntry</span><span class="p">[</span><span class="nb">str</span><span class="p">](</span><span class="n">sub_index</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;I&quot;</span><span class="p">))</span>
+    <span class="n">ACyclicLostFrames</span><span class="p">:</span> <span class="n">SdoEntry</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">SdoEntry</span><span class="p">[</span><span class="nb">int</span><span class="p">](</span><span class="n">sub_index</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;I&quot;</span><span class="p">))</span>
+    <span class="n">CyclicFramesPerSecond</span><span class="p">:</span> <span class="n">SdoEntry</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">SdoEntry</span><span class="p">[</span><span class="nb">str</span><span class="p">](</span><span class="n">sub_index</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;I&quot;</span><span class="p">))</span>
+    <span class="n">ACyclicFramesPerSecond</span><span class="p">:</span> <span class="n">SdoEntry</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">SdoEntry</span><span class="p">[</span><span class="nb">int</span><span class="p">](</span><span class="n">sub_index</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;I&quot;</span><span class="p">))</span>
+    <span class="n">MasterState</span><span class="p">:</span> <span class="n">SdoEntry</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">SdoEntry</span><span class="p">[</span><span class="nb">int</span><span class="p">](</span><span class="n">sub_index</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;H&quot;</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="DiagInterfaceControl"><a class="viewcode-back" href="../../pyetg1510.html#pyetg1510.sdo_fxxx_controls.DiagInterfaceControl">[ドキュメント]</a><span class="k">class</span> <span class="nc">DiagInterfaceControl</span><span class="p">(</span><span class="n">SdoDataBody</span><span class="p">):</span>
+    <span class="n">NumberOfEntries</span><span class="p">:</span> <span class="n">SdoEntry</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">SdoEntry</span><span class="p">[</span><span class="nb">int</span><span class="p">](</span><span class="n">sub_index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;B&quot;</span><span class="p">))</span>
+    <span class="n">ResetDiagInfo</span><span class="p">:</span> <span class="n">SdoEntry</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">SdoEntry</span><span class="p">[</span><span class="nb">bool</span><span class="p">](</span><span class="n">sub_index</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;?&quot;</span><span class="p">))</span></div>
+
+
+<span class="n">DetectModulesCommandFormat</span> <span class="o">=</span> <span class="n">SdoMetadata</span><span class="p">(</span>
+    <span class="n">index</span><span class="o">=</span><span class="mh">0xF002</span><span class="p">,</span>
+    <span class="n">sub_index</span><span class="o">=</span><span class="mh">0x0000</span><span class="p">,</span>
+    <span class="n">support_complete_access</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">max_sub_index</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">request_container</span><span class="o">=</span><span class="n">SDORequest</span><span class="p">,</span>
+    <span class="n">response_container</span><span class="o">=</span><span class="n">DetectModulesCommand</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">ConfiguredAddressListFormat</span> <span class="o">=</span> <span class="n">SdoMetadata</span><span class="p">(</span>
+    <span class="n">index</span><span class="o">=</span><span class="mh">0xF020</span><span class="p">,</span>
+    <span class="n">sub_index</span><span class="o">=</span><span class="mh">0x0000</span><span class="p">,</span>
+    <span class="n">support_complete_access</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">max_sub_index</span><span class="o">=</span><span class="mh">0x7F</span><span class="p">,</span>
+    <span class="n">request_container</span><span class="o">=</span><span class="n">SDORequest</span><span class="p">,</span>
+    <span class="n">response_container</span><span class="o">=</span><span class="n">ConfiguredAddressList</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="n">MasterDiagDataFormat</span> <span class="o">=</span> <span class="n">SdoMetadata</span><span class="p">(</span>
+    <span class="n">index</span><span class="o">=</span><span class="mh">0xF120</span><span class="p">,</span>
+    <span class="n">sub_index</span><span class="o">=</span><span class="mh">0x0000</span><span class="p">,</span>
+    <span class="n">support_complete_access</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">max_sub_index</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+    <span class="n">request_container</span><span class="o">=</span><span class="n">SDORequest</span><span class="p">,</span>
+    <span class="n">response_container</span><span class="o">=</span><span class="n">MasterDiagData</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">DiagInterfaceControlFormat</span> <span class="o">=</span> <span class="n">SdoMetadata</span><span class="p">(</span>
+    <span class="n">index</span><span class="o">=</span><span class="mh">0xF200</span><span class="p">,</span>
+    <span class="n">sub_index</span><span class="o">=</span><span class="mh">0x0000</span><span class="p">,</span>
+    <span class="n">support_complete_access</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">max_sub_index</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+    <span class="n">request_container</span><span class="o">=</span><span class="n">SDORequest</span><span class="p">,</span>
+    <span class="n">response_container</span><span class="o">=</span><span class="n">DiagInterfaceControl</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Beckhoff Automation K.K..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
